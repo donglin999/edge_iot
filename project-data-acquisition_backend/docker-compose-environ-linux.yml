@@ -1,0 +1,81 @@
+version : '3.8'
+services:
+  Env-mysql:
+    container_name: Env-mysql
+    image: mysql:8.0.23
+    hostname: mysql-service
+    privileged: true
+    restart: always
+    #    build:
+    #      context: ./mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - /apps/deployEnviron/docker/mysql/data:/var/lib/mysql
+      - /apps/deployEnviron/docker/mysql/logs:/var/log/mysql
+      - /apps/deployEnviron/docker/mysql/conf/my.cnf:/etc/mysql/my.cnf
+      - /apps/deployEnviron/docker/mysql/mysql-files:/var/lib/mysql-files
+      - /apps/deployEnviron/docker/mysql/sql:/docker-entrypoint-initdb.d
+#    command: [
+#      'mysqld',
+#      '--innodb-buffer-pool-size=80M',
+#      '--character-set-server=utf8mb4',
+#      '--collation-server=utf8mb4_unicode_ci',
+#      '--default-time-zone=+8:00',
+#      '--default_authentication_plugin=mysql_native_password'
+#      ]
+    environment:
+      MYSQL_DATABASE: 'nacosconfig'
+      MYSQL_ROOT_PASSWORD: k+5p2K{nZf
+      MYSQL_ROOT_HOST: "%"
+    networks:
+      netEnv:
+        ipv4_address: 172.23.0.2
+
+  emqx:
+    image: emqx:5.0.26
+    container_name: emqx5
+    environment:
+      - TZ=Asia/Shanghai
+      - EMQX_LOADED_PLUGINS="emqx_management,emqx_auth_http,emqx_dashboard"
+      - EMQX_ALLOW_ANONYMOUS=false
+      - EMQX_DASHBOARD__DEFAULT_USER__LOGIN=admin
+      - EMQX_DASHBOARD__DEFAULT_USER__PASSWORD=k+5p2K{nZf
+      - EMQX_NODE__MAX_PORTS=65535
+      - EMQX_MQTT__MAX_PACKET_SIZE=16MB
+
+    ports:
+      - 18083:18083
+      - 1883:1883
+      - 8081:8081
+      - 8083:8083
+      - 8883:8883
+      - 8084:8084
+    # 1883：MQTT 协议端口
+    # 8883：MQTT/SSL 端口
+    # 8083：MQTT/WebSocket 端口
+    # 8080： HTTP API 端口
+    # 18083：Dashboard 管理控制台端口
+    volumes:
+     - /apps/deployEnviron/docker/emqx/loaded_plugins:/opt/emqx/data/loaded_plugins:z
+     - /apps/deployEnviron/docker/emqx/logs:/opt/emqx/log
+     - /apps/deployEnviron/docker/emqx/data:/opt/emqx/data
+    #  - /apps/deployEnviron/docker/emqx\etc\conf\emqx.conf:/opt/emqx/etc/conf/emqx.conf
+    #  - /apps/deployEnviron/docker/emqx\etc\localtime:/etc/localtime
+    restart: always
+    networks:
+      netEnv:
+        ipv4_address: 172.23.0.16
+
+volumes:
+  db-data:
+
+networks:
+  netEnv:
+    driver: bridge
+    name: netEnv
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.23.0.0/25
+#          gateway: 172.23.0.1
