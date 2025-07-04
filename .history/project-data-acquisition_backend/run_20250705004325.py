@@ -3,9 +3,10 @@
 
 import pandas as pd
 import multiprocessing
-from apps.utils.baseLogger import Log
+from utils.baseLogger import Log
 from apps.utils.excel_processor import process_excel_data
 from apps.utils.process_manager import ProcessManager
+
 
 def main():
     try:
@@ -14,6 +15,7 @@ def main():
         device_data_addresses = process_excel_data(df)
         # 创建进程管理器
         process_manager = ProcessManager()
+        
         # 添加进程配置
         for config in device_data_addresses.values():
             process_type = config['protocol_type']
@@ -21,7 +23,6 @@ def main():
         Log().printInfo(f"process_manager: {process_manager}")
         # 启动所有进程
         process_manager.start_all_processes()
-        
         # 启动进程监控
         process_manager.monitor_processes()
         

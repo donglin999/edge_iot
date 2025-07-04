@@ -3,7 +3,7 @@
 
 import pandas as pd
 import multiprocessing
-from apps.utils.baseLogger import Log
+from utils.baseLogger import Log
 from apps.utils.excel_processor import process_excel_data
 from apps.utils.process_manager import ProcessManager
 

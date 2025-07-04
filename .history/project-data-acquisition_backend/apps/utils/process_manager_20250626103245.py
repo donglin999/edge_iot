@@ -2,7 +2,7 @@ import multiprocessing
 from multiprocessing import Process
 import threading
 import time
-from apps.utils.baseLogger import Log
+from utils.baseLogger import Log
 from settings import DevelopmentConfig
 
 
@@ -24,17 +24,56 @@ class ProcessManager:
         """启动单个进程"""
         try:
             if process_type == 'MC':
-                from apps.collector.plc_influx import PlcInflux
+                from apps.services.plc_influx import PlcInflux
                 process = Process(target=PlcInflux(config).plc_influx)
             elif process_type == 'modbustcp':
-                from apps.collector.modbustcp_influx import ModbustcpInflux
+                from apps.services.modbustcp_influx import ModbustcpInflux
                 process = Process(target=ModbustcpInflux(config).modbustcp_influx)
+            elif process_type in ['MQTT', 'mqtt']:
+                from apps.services.mqtt_influx import MqttInflux
+                process = Process(target=MqttInflux(config).mqtt_influx)
+            elif process_type == 'MQTT_SIEMENS':
+                from apps.services.mqtt_siemens import MqttSiemens
+                process = Process(target=MqttSiemens(config).mqtt_siemens)
+            elif process_type == 'modbustcp_mqtt':
+                from apps.services.modbustcp_mqtt import ModbustcpMQTT
+                process = Process(target=ModbustcpMQTT(config).modbustcp_mqtt)
             elif process_type == 'opc':
-                from apps.collector.opcua_influx import OpcuaInflux
+                from apps.services.opcua_influx import OpcuaInflux
                 process = Process(target=OpcuaInflux(config).start_collector)
+            elif process_type == 'VK':
+                from apps.services.vk_influx import VKInflux
+                process = Process(target=VKInflux(config).vk_influx, args=(config,))
+            elif process_type == 'VK701NDC':
+                from apps.services.vk_influx_701NDC import VK701NDC
+                vk = VK701NDC(config)
+                vk.server_init()
+                process = Process(target=vk.vk701NDC_influx, args=(vk, config))
             elif process_type == 'melseca1enet':
-                from apps.collector.melseca1enet_influx import MelsecA1ENetInflux
+                from apps.services.melseca1enet_influx import MelsecA1ENetInflux
                 process = Process(target=MelsecA1ENetInflux(config).melseca1enet_influx)
+            elif process_type == 'kafka':
+                from apps.services.kafka_hmi import KafkaHMI
+                kafka_config = {
+                    'bootstrap_servers': f"{config['source_ip']}:{config['source_port']}",
+                    'topic': config['device_name'],
+                    'hmi_ip': DevelopmentConfig().hmi_ip,
+                    'hmi_port': DevelopmentConfig().hmi_port
+                }
+                process = Process(target=KafkaHMI(**kafka_config).kafka_hmi)
+            elif process_type == "TCP_client_test":
+                from test.tcp_client_test import TCPClientTest
+                process = Process(target=TCPClientTest(config).start)
+            elif process_type == 'TCP_client':
+                from apps.services.tcp_services import TCPServer
+                process = Process(target=TCPServer(config).start)
+            elif process_type == 'API':
+                if DevelopmentConfig().API_TAG == "API_KAFKA":
+                    from apps.apis.api_kafka_xt import Api_Kafka
+                    process = Process(target=Api_Kafka(debug=config['debug']).run)
+                else:
+                    from apps.apis.api import Api
+                    process = Process(target=Api(debug=config['debug']).run)
             else:
                 Log().printError(f"未知的进程类型: {process_type}")
                 return None

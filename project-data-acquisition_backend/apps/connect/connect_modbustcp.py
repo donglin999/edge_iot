@@ -4,131 +4,199 @@
 from modbus_tk import modbus_tcp
 import modbus_tk.defines as cst
 from utils.baseLogger import Log
+import time
+import struct
+
 
 class ModbustcpClient:
-    def __init__(self, ip, port) -> None:
+    def __init__(self, ip, port, register_dict) -> None:
         self.ip = ip
         self.port = port
-        self.master = modbus_tcp.TcpMaster(self.ip, port=self.port, timeout_in_sec=10)
-    
-    def read_modbustcp(self, register_dict, slave_addr):
+        self.master = None
+        try:
+            self.connect()
+            self.register_configs = self._group_continuous_registers(register_dict)
+        except Exception as e:
+            Log().printError(f"Modbus TCP连接失败 {self.ip}:{self.port}, 错误: {e}")
+            raise e
+
+    def connect(self):
+        """连接到Modbus TCP设备"""
+        try:
+            self.master = modbus_tcp.TcpMaster(self.ip, port=self.port, timeout_in_sec=10)
+            Log().printInfo(f"成功连接到Modbus TCP设备 {self.ip}:{self.port}")
+            return True
+        except Exception as e:
+            Log().printError(f"连接Modbus TCP设备失败 {self.ip}:{self.port}, 错误: {e}")
+            return False
+
+    def _get_function_code_and_address(self, address):
+        """根据地址判断功能码和实际地址"""
+        if 1 <= address <= 9999:  # Coil
+            return cst.READ_COILS, address - 1
+        elif 10001 <= address <= 19999:  # Discrete Input
+            return cst.READ_DISCRETE_INPUTS, address - 10001
+        elif 30001 <= address <= 39999:  # Input Register
+            return cst.READ_INPUT_REGISTERS, address - 30001
+        elif 40001 <= address <= 49999:  # Holding Register
+            return cst.READ_HOLDING_REGISTERS, address - 40001
+        else:
+            raise ValueError(f"无效的寄存器地址: {address}")
+
+    def _convert_data_type(self, data, data_type):
+        """根据数据类型转换数据"""
+        try:
+            if data_type == 'BOOL':
+                return bool(data)
+            elif data_type == 'UINT16':
+                return data
+            elif data_type == 'INT16':
+                # 如果值大于32767，说明是负数
+                return data if data <= 32767 else data - 65536
+            elif data_type == 'INT32':
+                if isinstance(data, list) and len(data) >= 2:
+                    # 合并两个寄存器的值
+                    combined = (data[0] << 16) | data[1]
+                    # 处理负数
+                    if combined > 2147483647:
+                        combined -= 4294967296
+                    return combined
+                else:
+                    raise ValueError("INT32类型需要两个连续的寄存器")
+            elif data_type == 'UINT32':
+                if isinstance(data, list) and len(data) >= 2:
+                    return (data[0] << 16) | data[1]
+                else:
+                    raise ValueError("UINT32类型需要两个连续的寄存器")
+            elif data_type == 'FLOAT32':
+                if isinstance(data, list) and len(data) >= 2:
+                    # 将两个16位整数转换为浮点数
+                    combined = (data[0] << 16) | data[1]
+                    return struct.unpack('!f', struct.pack('!I', combined))[0]
+                else:
+                    raise ValueError("FLOAT32类型需要两个连续的寄存器")
+            else:
+                return data
+        except Exception as e:
+            Log().printError(f"数据类型转换失败: {e}")
+            return data
+
+    def _group_continuous_registers(self, registers):
+        """将连续的寄存器地址分组"""
+        try:
+            # 首先按功能码分组
+            function_groups = {}
+            for en_name, register_conf in registers.items():
+                if isinstance(register_conf, dict):
+                    # 根据地址判断功能码和实际地址
+                    func_code, actual_addr = self._get_function_code_and_address(register_conf['source_addr'])
+                    if func_code not in function_groups:
+                        function_groups[func_code] = []
+                    # 更新配置中的实际地址
+                    register_conf['actual_addr'] = actual_addr
+                    function_groups[func_code].append(register_conf)
+
+            # 对每个功能码组内的寄存器按实际地址排序
+            for func_code in function_groups:
+                function_groups[func_code].sort(key=lambda x: x['actual_addr'])
+
+            # 对每个功能码组内的寄存器进行连续分组
+            continuous_groups = {}
+            for func_code, regs in function_groups.items():
+                continuous_groups[func_code] = []
+                current_group = []
+
+                for i, reg in enumerate(regs):
+                    if not current_group:
+                        current_group.append(reg)
+                    else:
+                        # 检查是否连续
+                        last_reg = current_group[-1]
+                        expected_addr = last_reg['actual_addr'] + last_reg['num']
+
+                        if reg['actual_addr'] == expected_addr:
+                            current_group.append(reg)
+                        else:
+                            if current_group:
+                                continuous_groups[func_code].append(current_group)
+                            current_group = [reg]
+
+                if current_group:
+                    continuous_groups[func_code].append(current_group)
+
+            return continuous_groups
+        except Exception as e:
+            Log().printError(f"将连续的寄存器地址分组失败 {self.ip}:{self.port}, 错误: {e}")
+            print(f"将连续的寄存器地址分组失败 {self.ip}:{self.port}, 错误: {e}")
+            time.sleep(10)
+            return None
+
+    def read_modbustcp(self, slave_addr=1):
+        """读取Modbus TCP数据，支持连续地址批量读取"""
+        if not self.master:
+            if not self.connect():
+                return None
+
         tag_data = []
-        # print(f"register_dict:{register_dict},slave_addr:{slave_addr}")
-        for K, V in register_dict.items():
-            if isinstance(V, dict):
-                # print(V['source_addr'])
-                if isinstance(V['source_addr'], int):
-                    addr = V['source_addr'] - 40001
-                else:
-                    addr = int(float(V['source_addr'])) - 40001
-                # print(V['type'])
-                if isinstance(V['type'], int):
-                    data_type = V['type']
-                else:
-                    data_type = 3
-                # print(V['num'])
-                if isinstance(V['num'], int):
-                    num = V['num']
-                else:
-                    num = int(V['num'])
-                if V['type'] == "32位浮点数":
-                    data_format = '>f'
-                elif V['type'] == "16位有符号整数":
-                    data_format = ''
-                elif V['type'] == "布尔型":
-                    data_format = ''
-                else:
-                    data_format = ''
 
-                if V['data_source'] == "ART":
-                    data_format = ''
-                    addr = addr + 257
-                try:
-                    if slave_addr:
-                        slave = int(slave_addr)
-                    else:
-                        slave = V[slave_addr]
+        try:
+            for func_code, groups in self.register_configs.items():
+                for group in groups:
+                    # print(group)
+                    start_addr = group[0]['actual_addr']  # 使用实际地址
+                    total_length = (group[-1]['actual_addr'] + group[-1]['num']) - start_addr
 
-                    data = self.master.execute(slave=slave, function_code=data_type,
-                                               starting_address=addr,
-                                               quantity_of_x=num, data_format=data_format)
-                except Exception as e:
-                    print(f"读modbustcp报错{e}")
-                    return "无法连接"
+                    try:
+                       # 批量读取数据
+                        data = self.master.execute(
+                            slave=slave_addr,
+                            function_code=func_code,
+                            starting_address=start_addr,
+                            quantity_of_x=total_length
+                        )
+                        # 分配数据到各个寄存器
+                        offset = 0
+                        for reg in group:
+                            reg_length = reg['num']
+                            reg_data = data[offset:offset + reg_length]
+                            offset += reg_length
 
-                modbustcp_data = {}
-                cn_name = V['cn_name']
-                en_name = V['en_name']
-                part_name = V['part_name']
-                input_data_minimum = V['input_data_minimum']
-                input_data_maximum = V['input_data_maximum']
-                output_data_minimum = V['output_data_minimum']
-                output_data_maximum = V['output_data_maximum']
-                unit = V['unit']
-                data_source = V['data_source']
-                coefficient = V['coefficient']
-                precision = V['precision']
-                device_a_tag = register_dict['device_a_tag']
-                device_name = register_dict['device_name']
-                # print(f"1")
-                if input_data_minimum == 4 and input_data_maximum == 20:
-                    i = (data[0] / 65535) * (input_data_maximum - input_data_minimum) + input_data_minimum
-                    modbustcp_data[en_name] = float((i - input_data_minimum) * (output_data_maximum -
-                            output_data_minimum) / (input_data_maximum - input_data_minimum) + output_data_minimum)
-                    modbustcp_data['cn_name'] = cn_name
-                    modbustcp_data['addr'] = V['source_addr']
-                    modbustcp_data['part_name'] = part_name
-                    modbustcp_data['unit'] = unit
-                    modbustcp_data['data_source'] = data_source
-                    modbustcp_data['device_a_tag'] = device_a_tag
-                    modbustcp_data['device_name'] = device_name
-                    modbustcp_data['kafka_position'] = V['kafka_position']
-                    tag_data.append(modbustcp_data)
-                elif input_data_minimum == 0 and input_data_maximum == 65535:
-                    modbustcp_data[en_name] = (data[0] / 65535) * (output_data_maximum - output_data_minimum) + output_data_minimum
-                    modbustcp_data['cn_name'] = cn_name
-                    modbustcp_data['addr'] = V['source_addr']
-                    modbustcp_data['part_name'] = part_name
-                    modbustcp_data['unit'] = unit
-                    modbustcp_data['data_source'] = data_source
-                    modbustcp_data['device_a_tag'] = device_a_tag
-                    modbustcp_data['device_name'] = device_name
-                    modbustcp_data['kafka_position'] = V['kafka_position']
-                    tag_data.append(modbustcp_data)
-                else:
-                    # print(f"2")
-                    if '.' in str(V['source_addr']):
-                        # print(f"地址{V['source_addr']}是浮点数")
-                        # 将浮点数转换为字符串
-                        num_str = str(V['source_addr'])
+                            # 转换数据类型
+                            converted_data = self._convert_data_type(
+                                reg_data[0] if len(reg_data) == 1 else list(reg_data),
+                                reg['type']
+                            )
 
-                        # 找到小数点的位置
-                        decimal_point_index = num_str.find('.')
+                            # 构建数据字典
+                            modbustcp_data = {
+                                reg['en_name']: converted_data,
+                                'cn_name': reg['cn_name'],
+                                'device_a_tag': reg['device_a_tag'],
+                                'device_name': reg['device_name'],
+                            }
 
-                        # 如果找到了小数点，则截取小数点之后的部分
-                        decimal_part_str = int(num_str[decimal_point_index + 1:])
+                            # 添加可选字段
+                            if 'kafka_position' in reg:
+                                modbustcp_data['kafka_position'] = reg['kafka_position']
 
-                        # 使用 bin() 函数获取二进制字符串，并去掉 '0b' 前缀
-                        binary_str = bin(data[0])[2:]
+                            tag_data.append(modbustcp_data)
+                    except Exception as e:
+                        Log().printError(
+                            f"读取寄存器失败 - 起始地址: {start_addr}, 长度: {total_length}, 功能码: {func_code}, 错误: {e}")
+                        continue
 
-                        # 使用 zfill() 函数填充前导零，直到长度为16
-                        binary_str_16bit = binary_str.zfill(16)
+        except Exception as e:
+            Log().printError(f"读取Modbus TCP数据总体错误: {e}")
+            return None
 
-                        modbustcp_data[en_name] = binary_str_16bit[decimal_part_str]
-                    else:
-                        modbustcp_data[en_name] = round(float(data[0] * coefficient), int(precision))
-
-                    modbustcp_data['cn_name'] = cn_name
-                    modbustcp_data['addr'] = V['source_addr']
-                    modbustcp_data['part_name'] = part_name
-                    modbustcp_data['unit'] = unit
-                    modbustcp_data['data_source'] = data_source
-                    modbustcp_data['device_a_tag'] = device_a_tag
-                    modbustcp_data['device_name'] = device_name
-                    modbustcp_data['kafka_position'] = V['kafka_position']
-                    # print(f"3")
-                    tag_data.append(modbustcp_data)
-        # 断开连接
-        self.master.close()
         return tag_data
 
+    def close(self):
+        """关闭连接"""
+        if self.master:
+            try:
+                self.master.close()
+                self.master = None
+                Log().printInfo(f"已关闭与Modbus TCP设备的连接 {self.ip}:{self.port}")
+            except Exception as e:
+                Log().printError(f"关闭Modbus TCP连接失败: {e}")
