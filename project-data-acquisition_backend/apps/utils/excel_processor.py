@@ -1,6 +1,31 @@
 import pandas as pd
 
 
+class ExcelProcessor:
+    """Excel处理器类"""
+    
+    def __init__(self, file_path=None):
+        """初始化Excel处理器"""
+        self.file_path = file_path
+        self.data = None
+    
+    def load_excel(self, file_path=None):
+        """加载Excel文件"""
+        if file_path:
+            self.file_path = file_path
+        if self.file_path:
+            self.data = pd.read_excel(self.file_path)
+        return self.data
+    
+    def process_data(self, df=None):
+        """处理Excel数据"""
+        if df is None:
+            df = self.data
+        if df is None:
+            raise ValueError("没有可处理的数据")
+        return process_excel_data(df)
+
+
 def process_excel_data(df):
     """处理Excel数据,构建设备配置字典"""
     device_data_addresses = {}

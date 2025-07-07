@@ -636,11 +636,24 @@ class HslTimeOut:
 		self.StartTime = time()
 	WaitHandleTimeOut = []
 	interactiveLock = threading.Lock()
+	MAX_TIMEOUT_LIST_SIZE = 500  # 设置最大超时列表大小限制
+	CLEANUP_KEEP_SIZE = 300      # 清理时保留的对象数量
+	
 	@staticmethod
 	def AddHandleTimeOutCheck( timeOut ):
 		HslTimeOut.interactiveLock.acquire()
-		HslTimeOut.WaitHandleTimeOut.append(timeOut)
-		HslTimeOut.interactiveLock.release()
+		try:
+			# 添加新的超时对象
+			HslTimeOut.WaitHandleTimeOut.append(timeOut)
+			
+			# 检查列表大小，如果超过限制则进行清理
+			if len(HslTimeOut.WaitHandleTimeOut) > HslTimeOut.MAX_TIMEOUT_LIST_SIZE:
+				# 保留最新的对象，移除最旧的
+				HslTimeOut.WaitHandleTimeOut = HslTimeOut.WaitHandleTimeOut[-HslTimeOut.CLEANUP_KEEP_SIZE:]
+				print(f"HSL超时列表已清理，保留最新{HslTimeOut.CLEANUP_KEEP_SIZE}个对象")
+		finally:
+			HslTimeOut.interactiveLock.release()
+	
 	@staticmethod
 	def HandleTimeOutCheck( socket : socket, timeout ):
 		hslTimeOut = HslTimeOut()
@@ -649,32 +662,57 @@ class HslTimeOut:
 		if timeout > 0:
 			HslTimeOut.AddHandleTimeOutCheck( hslTimeOut )
 		return hslTimeOut
+	
 	@staticmethod
 	def CreateTimeoutCheckThread( ):
 		try:
 			_thread.start_new_thread( HslTimeOut.CheckTimeOut, ("Thread-timeout", 2, ) )
 		except:
 			print('start timeour check thread failed')
+	
 	@staticmethod
 	def CheckTimeOut(threadName, delay):
+		cleanup_counter = 0
 		while True:
 			sleep(0.1)
+			cleanup_counter += 1
+			
 			HslTimeOut.interactiveLock.acquire()
-			count = len(HslTimeOut.WaitHandleTimeOut)
-			while(count > 0):
-				count = count - 1
-				timeout = HslTimeOut.WaitHandleTimeOut[count]
-				if timeout.IsSuccessful == True:
-					HslTimeOut.WaitHandleTimeOut.remove(timeout)
-					continue
-				if (time() - timeout.StartTime) > timeout.DelayTime:
-					if timeout.IsSuccessful == False:
-						if timeout.WorkSocket != None:
-							timeout.WorkSocket.close()
-							timeout.IsTimeout = True
-					HslTimeOut.WaitHandleTimeOut.remove(timeout)
-					continue
-			HslTimeOut.interactiveLock.release()
+			try:
+				# 使用更高效的清理方式
+				current_time = time()
+				items_to_remove = []
+				
+				# 收集需要清理的对象
+				for i, timeout in enumerate(HslTimeOut.WaitHandleTimeOut):
+					if timeout.IsSuccessful == True:
+						items_to_remove.append(i)
+					elif (current_time - timeout.StartTime) > timeout.DelayTime:
+						if timeout.IsSuccessful == False:
+							if timeout.WorkSocket != None:
+								try:
+									timeout.WorkSocket.close()
+								except:
+									pass  # 忽略关闭异常
+								timeout.IsTimeout = True
+						items_to_remove.append(i)
+				
+				# 从后往前删除，避免索引错位
+				for i in reversed(items_to_remove):
+					if i < len(HslTimeOut.WaitHandleTimeOut):
+						del HslTimeOut.WaitHandleTimeOut[i]
+				
+				# 每100次循环（10秒）进行一次强制大小检查
+				if cleanup_counter >= 100:
+					cleanup_counter = 0
+					if len(HslTimeOut.WaitHandleTimeOut) > HslTimeOut.MAX_TIMEOUT_LIST_SIZE:
+						# 强制清理，只保留最新的对象
+						old_size = len(HslTimeOut.WaitHandleTimeOut)
+						HslTimeOut.WaitHandleTimeOut = HslTimeOut.WaitHandleTimeOut[-HslTimeOut.CLEANUP_KEEP_SIZE:]
+						print(f"HSL强制清理：从{old_size}个对象减少到{len(HslTimeOut.WaitHandleTimeOut)}个")
+				
+			finally:
+				HslTimeOut.interactiveLock.release()
 
 class SoftIncrementCount:
 	'''一个简单的不持久化的序号自增类，采用线程安全实现，并允许指定最大数字，到达后清空从指定数开始'''

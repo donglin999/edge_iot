@@ -6,7 +6,7 @@ from influxdb_client import InfluxDBClient
 from influxdb_client.client.write_api import SYNCHRONOUS
 
 from settings import DevelopmentConfig
-from utils.baseLogger import Log
+from apps.utils.baseLogger import Log
 
 
 def w_influx(client, device_name, data):

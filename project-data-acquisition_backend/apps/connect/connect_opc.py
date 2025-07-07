@@ -5,7 +5,7 @@ from opcua import Client, ua
 import time
 import threading
 from datetime import datetime
-from utils.baseLogger import Log
+from apps.utils.baseLogger import Log
 
 
 

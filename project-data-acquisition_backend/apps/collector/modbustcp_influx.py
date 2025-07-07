@@ -11,7 +11,7 @@ import inspect
 
 from apps.connect.connect_influx import InfluxClient, w_influx
 from apps.connect.connect_modbustcp import ModbustcpClient
-from utils.baseLogger import Log
+from apps.utils.baseLogger import Log
 
 
 def _async_raise(tid, exctype):
@@ -156,5 +156,4 @@ class ModbustcpInflux:
                         Log().printInfo(f"错误恢复后提交了 {len(batch_data)} 条Modbus TCP数据到InfluxDB")
                         batch_data = []
                     except Exception as e2:
-                        Log().printError(f"Modbus TCP {self.device_ip} 尝试提交积累数据时出错: {e2}")
-
+                        Log().printError(f"Modbus TCP {self.device_ip} 尝试提交积累数据时出错: {e2}") 

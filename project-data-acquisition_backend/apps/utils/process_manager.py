@@ -1,9 +1,6 @@
-import multiprocessing
 from multiprocessing import Process
-import threading
 import time
 from apps.utils.baseLogger import Log
-from settings import DevelopmentConfig
 
 
 class ProcessManager:

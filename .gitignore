@@ -2,6 +2,7 @@
 node_modules/
 vendor/
 
+
 # 构建输出
 dist/
 build/
@@ -12,7 +13,7 @@ out/
 docs/
 .cursorignore
 .cursor/
-
+.history/
 .env
 .env.local
 .env.*.local
@@ -70,3 +71,11 @@ project-data-acquisition_backend/__pycache__/
 project-data-acquisition_backend/.pytest_cache/
 project-data-acquisition_backend/venv/
 project-data-acquisition_backend/.env 
+project-data-acquisition_backend/.history/
+project-data-acquisition_backend/venv/
+project-data-acquisition_backend/.pytest_cache/
+project-data-acquisition_backend/__pycache__/
+project-data-acquisition_backend/venv/
+project-data-acquisition_backend/.pytest_cache/
+project-data-acquisition_backend/__pycache__/
+project-data-acquisition_backend/.pytest_cache/

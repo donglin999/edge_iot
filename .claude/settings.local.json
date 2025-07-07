@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm:*)",
+      "Bash(mkdir:*)",
+      "Bash(python -m pytest tests/unit -v --tb=short --dry-run)",
+      "Bash(python3 -m pytest tests/unit -v --tb=short --dry-run)",
+      "Bash(python3:*)",
+      "Bash(python -m pytest tests/ -v)",
+      "Bash(pip3 install:*)",
+      "Bash(make:*)",
+      "Bash(apt:*)",
+      "Bash(apt install:*)",
+      "Bash(ls:*)",
+      "Bash(python -m pytest tests/unit/connect/test_hsl_long_term_memory.py::HSLLongTermMemoryTest::test_long_term_memory_trend -v)",
+      "Bash(rg:*)",
+      "Bash(grep:*)"
+    ],
+    "deny": []
+  }
+}
