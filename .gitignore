@@ -9,6 +9,7 @@ build/
 out/
 
 # 环境文件
+.claude/
 .venv/
 docs/
 .cursorignore
