@@ -1,0 +1,49 @@
+{
+  "name": "iot-data-acquisition-frontend",
+  "version": "1.0.0",
+  "description": "Web interface for IoT data collection system",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:watch": "vitest --watch",
+    "lint": "eslint . --ext .vue,.js,.ts --fix",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "vuex": "^4.1.0",
+    "element-plus": "^2.3.8",
+    "axios": "^1.4.0",
+    "echarts": "^5.4.2",
+    "vue-echarts": "^6.6.0",
+    "dayjs": "^1.11.8",
+    "lodash": "^4.17.21",
+    "mitt": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.0",
+    "vitest": "^0.34.1",
+    "@vue/test-utils": "^2.4.1",
+    "jsdom": "^22.1.0",
+    "playwright": "^1.36.0",
+    "@playwright/test": "^1.36.0",
+    "eslint": "^8.44.0",
+    "eslint-plugin-vue": "^9.15.1",
+    "prettier": "^3.0.0",
+    "c8": "^8.0.1",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "sass": "^1.63.6"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

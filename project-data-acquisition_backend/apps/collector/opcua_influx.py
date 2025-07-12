@@ -10,7 +10,7 @@ import inspect
 import copy
 from apps.connect.connect_influx import InfluxClient, w_influx
 from apps.connect.connect_opc import OpcClient
-from utils.baseLogger import Log
+from apps.utils.baseLogger import Log
 
 
 class OpcuaInflux:

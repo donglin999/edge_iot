@@ -15,7 +15,7 @@ import queue
 
 from apps.connect.connect_influx import InfluxClient, w_influx
 from apps.connect.connect_melseca1enet_backu import MelsecA1ENetClient
-from utils.baseLogger import Log
+from apps.utils.baseLogger import Log
 
 
 class MelsecA1ENetInflux:

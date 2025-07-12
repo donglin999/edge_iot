@@ -10,7 +10,7 @@ import struct
 from apps.connect.connect_influx import w_influx, InfluxClient
 from lib.HslCommunication import MelsecA1ENet
 from settings import DevelopmentConfig
-from utils.baseLogger import Log
+from apps.utils.baseLogger import Log
 
 
 def circular_shift_left(value, shift):

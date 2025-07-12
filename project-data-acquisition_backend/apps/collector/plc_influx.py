@@ -16,7 +16,7 @@ import queue
 
 from apps.connect.connect_influx import InfluxClient, w_influx
 from apps.connect.connect_plc import PLCClient
-from utils.baseLogger import Log
+from apps.utils.baseLogger import Log
 
 
 class PlcInflux:

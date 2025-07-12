@@ -1,0 +1,111 @@
+version: '3.8'
+
+services:
+  # FastAPI Backend Service
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: iot_api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./data/iot.db
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=${INFLUXDB_TOKEN:-your_token_here}
+      - INFLUXDB_ORG=${INFLUXDB_ORG:-your_org_here}
+      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET:-your_bucket_here}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-your_secret_key_here}
+    volumes:
+      - ./api:/app
+      - ./data:/app/data
+      - ./project-data-acquisition_backend:/app/data_acquisition
+    depends_on:
+      - influxdb
+    restart: unless-stopped
+    networks:
+      - iot_network
+
+  # Vue.js Frontend Service (Development)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: iot_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:8000
+      - VITE_WS_URL=ws://localhost:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - iot_network
+
+  # InfluxDB Time Series Database
+  influxdb:
+    image: influxdb:2.7
+    container_name: iot_influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME:-admin}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD:-password}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG:-iot_org}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET:-iot_data}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_TOKEN:-your_token_here}
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - influxdb_config:/etc/influxdb2
+    restart: unless-stopped
+    networks:
+      - iot_network
+
+  # Nginx Reverse Proxy (Production)
+  nginx:
+    image: nginx:alpine
+    container_name: iot_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./frontend/dist:/usr/share/nginx/html
+    depends_on:
+      - api
+      - frontend
+    restart: unless-stopped
+    networks:
+      - iot_network
+    profiles:
+      - production
+
+  # Redis Cache (Optional)
+  redis:
+    image: redis:7-alpine
+    container_name: iot_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - iot_network
+    profiles:
+      - production
+
+volumes:
+  influxdb_data:
+  influxdb_config:
+  redis_data:
+
+networks:
+  iot_network:
+    driver: bridge
