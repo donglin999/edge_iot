@@ -1,0 +1,12 @@
+# 基础依赖
+numpy>=1.20.0
+asyncio>=3.4.3
+
+# Modbus TCP依赖
+pymodbus>=3.0.0
+
+# OPC UA依赖
+asyncua>=1.0.0
+
+# 可选依赖
+cryptography>=3.4.0 

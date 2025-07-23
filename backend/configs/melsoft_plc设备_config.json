@@ -1,0 +1,29 @@
+{
+  "device": {
+    "name": "PLC设备",
+    "protocol": "melsoft_a1e",
+    "connection": {
+      "host": "192.168.1.102",
+      "port": 5007
+    },
+    "points": [
+      {
+        "name": "状态",
+        "address": "M100",
+        "data_type": "bool"
+      },
+      {
+        "name": "计数",
+        "address": "D100",
+        "data_type": "int"
+      }
+    ],
+    "interval": 2000
+  },
+  "influxdb": {
+    "url": "http://localhost:8086",
+    "token": "iot-token-12345",
+    "org": "iot-org",
+    "bucket": "iot-data"
+  }
+}

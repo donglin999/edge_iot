@@ -1,111 +1,269 @@
 version: '3.8'
 
 services:
-  # FastAPI Backend Service
-  api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    container_name: iot_api
-    ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URL=sqlite:///./data/iot.db
-      - INFLUXDB_URL=http://influxdb:8086
-      - INFLUXDB_TOKEN=${INFLUXDB_TOKEN:-your_token_here}
-      - INFLUXDB_ORG=${INFLUXDB_ORG:-your_org_here}
-      - INFLUXDB_BUCKET=${INFLUXDB_BUCKET:-your_bucket_here}
-      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-your_secret_key_here}
-    volumes:
-      - ./api:/app
-      - ./data:/app/data
-      - ./project-data-acquisition_backend:/app/data_acquisition
-    depends_on:
-      - influxdb
-    restart: unless-stopped
-    networks:
-      - iot_network
-
-  # Vue.js Frontend Service (Development)
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: iot_frontend
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=development
-      - VITE_API_URL=http://localhost:8000
-      - VITE_WS_URL=ws://localhost:8000
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    depends_on:
-      - api
-    restart: unless-stopped
-    networks:
-      - iot_network
-
-  # InfluxDB Time Series Database
+  # ===============================
+  # 核心数据库服务
+  # ===============================
   influxdb:
     image: influxdb:2.7
-    container_name: iot_influxdb
+    container_name: iot-influxdb
     ports:
       - "8086:8086"
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME:-admin}
-      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD:-password}
-      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG:-iot_org}
-      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET:-iot_data}
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_TOKEN:-your_token_here}
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=password123
+      - DOCKER_INFLUXDB_INIT_ORG=iot-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=iot-data
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=iot-token-12345
     volumes:
       - influxdb_data:/var/lib/influxdb2
       - influxdb_config:/etc/influxdb2
     restart: unless-stopped
     networks:
-      - iot_network
+      - iot-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
-  # Nginx Reverse Proxy (Production)
+  # ===============================
+  # 数据采集服务
+  # ===============================
+  data-acquisition:
+    build:
+      context: ./project-data-acquisition
+      dockerfile: Dockerfile
+    container_name: iot-data-acquisition
+    environment:
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=iot-token-12345
+      - INFLUXDB_ORG=iot-org
+      - INFLUXDB_BUCKET=iot-data
+      - PYTHONPATH=/app
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./project-data-acquisition:/app
+      - data_acquisition_logs:/app/logs
+    depends_on:
+      - influxdb
+      - mock-modbus
+      - mock-opcua
+      - mock-plc
+    restart: unless-stopped
+    networks:
+      - iot-network
+    command: ["python", "run.py"]
+
+  # ===============================
+  # 后端API服务
+  # ===============================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: iot-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=iot-token-12345
+      - INFLUXDB_ORG=iot-org
+      - INFLUXDB_BUCKET=iot-data
+      - PYTHONPATH=/app
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    volumes:
+      - ./backend:/app
+      - backend_logs:/app/logs
+    depends_on:
+      - influxdb
+    restart: unless-stopped
+    networks:
+      - iot-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ===============================
+  # 前端服务
+  # ===============================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: iot-frontend
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000
+      - VITE_WS_URL=ws://localhost:8000/ws
+    volumes:
+      - ./frontend:/app
+      - frontend_dist:/app/dist
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - iot-network
+
+  # ===============================
+  # Nginx代理服务
+  # ===============================
   nginx:
     image: nginx:alpine
-    container_name: iot_nginx
+    container_name: iot-nginx
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/ssl:/etc/nginx/ssl
-      - ./frontend/dist:/usr/share/nginx/html
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - frontend_dist:/var/www/html:ro
+      - nginx_logs:/var/log/nginx
     depends_on:
-      - api
       - frontend
+      - backend
     restart: unless-stopped
     networks:
-      - iot_network
-    profiles:
-      - production
+      - iot-network
 
-  # Redis Cache (Optional)
-  redis:
-    image: redis:7-alpine
-    container_name: iot_redis
+  # ===============================
+  # 模拟设备服务
+  # ===============================
+  mock-modbus:
+    build:
+      context: ./mock-devices
+      dockerfile: docker/Dockerfile.modbus
+    container_name: mock-modbus-tcp
     ports:
-      - "6379:6379"
+      - "502:502"
+    environment:
+      - DEVICE_ID=modbus_tcp_001
+      - DEVICE_HOST=0.0.0.0
+      - DEVICE_PORT=502
+      - UPDATE_INTERVAL=1.0
+      - UNIT_ID=1
     volumes:
-      - redis_data:/data
+      - ./mock-devices/modbus/modbus_config.json:/app/config.json:ro
+      - mock_device_logs:/app/logs
     restart: unless-stopped
     networks:
-      - iot_network
-    profiles:
-      - production
+      - iot-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; s=socket.socket(); s.settimeout(1); s.connect(('localhost', 502)); s.close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
-volumes:
-  influxdb_data:
-  influxdb_config:
-  redis_data:
+  mock-opcua:
+    build:
+      context: ./mock-devices
+      dockerfile: docker/Dockerfile.opcua
+    container_name: mock-opcua-server
+    ports:
+      - "4840:4840"
+    environment:
+      - DEVICE_ID=opcua_device_001
+      - DEVICE_HOST=0.0.0.0
+      - DEVICE_PORT=4840
+      - UPDATE_INTERVAL=1.0
+      - NAMESPACE=http://mock.iot.device/opcua001
+    volumes:
+      - ./mock-devices/opcua/opcua_config.json:/app/config.json:ro
+      - mock_device_logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - iot-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; s=socket.socket(); s.settimeout(1); s.connect(('localhost', 4840)); s.close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
+  mock-plc:
+    build:
+      context: ./mock-devices
+      dockerfile: docker/Dockerfile.plc
+    container_name: mock-mitsubishi-plc
+    ports:
+      - "5001:5001"
+    environment:
+      - DEVICE_ID=mitsubishi_plc_001
+      - DEVICE_HOST=0.0.0.0
+      - DEVICE_PORT=5001
+      - UPDATE_INTERVAL=1.0
+      - PLC_TYPE=FX3U
+      - STATION_NUMBER=255
+    volumes:
+      - ./mock-devices/mitsubishi/plc_config.json:/app/config.json:ro
+      - mock_device_logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - iot-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; s=socket.socket(); s.settimeout(1); s.connect(('localhost', 5001)); s.close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mock-device-manager:
+    build:
+      context: ./mock-devices
+      dockerfile: docker/Dockerfile.manager
+    container_name: mock-device-manager
+    ports:
+      - "8080:8080"
+    environment:
+      - MANAGER_PORT=8080
+      - MANAGER_HOST=0.0.0.0
+    volumes:
+      - ./mock-devices/device_manager_config.json:/app/config.json:ro
+      - mock_device_logs:/app/logs
+    depends_on:
+      - mock-modbus
+      - mock-opcua
+      - mock-plc
+    restart: unless-stopped
+    networks:
+      - iot-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+# ===============================
+# 网络配置
+# ===============================
 networks:
-  iot_network:
+  iot-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# ===============================
+# 数据卷配置
+# ===============================
+volumes:
+  # 数据库存储
+  influxdb_data:
+    driver: local
+  influxdb_config:
+    driver: local
+    
+  # 应用日志
+  backend_logs:
+    driver: local
+  data_acquisition_logs:
+    driver: local
+  mock_device_logs:
+    driver: local
+  nginx_logs:
+    driver: local
+    
+  # 前端构建文件
+  frontend_dist:
+    driver: local

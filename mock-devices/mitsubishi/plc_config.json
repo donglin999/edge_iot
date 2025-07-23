@@ -1,0 +1,284 @@
+{
+  "device_id": "mitsubishi_plc_001", 
+  "device_name": "三菱PLC模拟设备",
+  "device_type": "mitsubishi_plc",
+  "host": "0.0.0.0",
+  "port": 5001,
+  "update_interval": 1.0,
+  
+  "plc_settings": {
+    "plc_type": "FX3U",
+    "station_number": 255,
+    "protocol": "A1E",
+    "cpu_type": "FX3U-32M",
+    "firmware_version": "3.30"
+  },
+  
+  "memory_layout": {
+    "d_register_count": 8000,
+    "m_relay_count": 8000, 
+    "x_input_count": 128,
+    "y_output_count": 128,
+    "b_register_count": 8000,
+    "t_timer_count": 256,
+    "c_counter_count": 256,
+    "f_file_register_count": 32768
+  },
+  
+  "device_mapping": [
+    {
+      "name": "温度传感器1",
+      "device_type": "D",
+      "address": 0,
+      "data_type": "int16",
+      "unit": "0.1°C",
+      "description": "生产线温度监测"
+    },
+    {
+      "name": "温度传感器2", 
+      "device_type": "D",
+      "address": 1,
+      "data_type": "int16",
+      "unit": "0.1°C",
+      "description": "环境温度监测"
+    },
+    {
+      "name": "压力传感器",
+      "device_type": "D", 
+      "address": 2,
+      "data_type": "int16",
+      "unit": "0.01MPa",
+      "description": "液压系统压力"
+    },
+    {
+      "name": "流量传感器",
+      "device_type": "D",
+      "address": 3,
+      "data_type": "int16", 
+      "unit": "L/min",
+      "description": "冷却液流量"
+    },
+    {
+      "name": "转速传感器",
+      "device_type": "D",
+      "address": 4,
+      "data_type": "int16",
+      "unit": "RPM",
+      "description": "主轴转速"
+    },
+    {
+      "name": "位置传感器X",
+      "device_type": "D",
+      "address": 10,
+      "data_type": "int16",
+      "unit": "0.01mm",
+      "description": "X轴位置"
+    },
+    {
+      "name": "位置传感器Y",
+      "device_type": "D", 
+      "address": 11,
+      "data_type": "int16",
+      "unit": "0.01mm",
+      "description": "Y轴位置"
+    },
+    {
+      "name": "位置传感器Z",
+      "device_type": "D",
+      "address": 12,
+      "data_type": "int16",
+      "unit": "0.01mm", 
+      "description": "Z轴位置"
+    },
+    {
+      "name": "电机运行状态",
+      "device_type": "M",
+      "address": 0,
+      "data_type": "bool",
+      "description": "主电机运行状态"
+    },
+    {
+      "name": "急停按钮",
+      "device_type": "M",
+      "address": 1,
+      "data_type": "bool",
+      "description": "急停按钮状态"
+    },
+    {
+      "name": "安全门状态",
+      "device_type": "M",
+      "address": 2,
+      "data_type": "bool",
+      "description": "安全门开关状态"
+    },
+    {
+      "name": "报警信号",
+      "device_type": "M",
+      "address": 10,
+      "data_type": "bool",
+      "description": "系统报警信号"
+    },
+    {
+      "name": "自动模式",
+      "device_type": "M",
+      "address": 20,
+      "data_type": "bool",
+      "description": "自动运行模式"
+    },
+    {
+      "name": "手动模式",
+      "device_type": "M",
+      "address": 21,
+      "data_type": "bool", 
+      "description": "手动操作模式"
+    },
+    {
+      "name": "启动按钮",
+      "device_type": "X",
+      "address": 0,
+      "data_type": "bool",
+      "description": "设备启动按钮"
+    },
+    {
+      "name": "停止按钮",
+      "device_type": "X",
+      "address": 1,
+      "data_type": "bool",
+      "description": "设备停止按钮"
+    },
+    {
+      "name": "复位按钮",
+      "device_type": "X",
+      "address": 2,
+      "data_type": "bool",
+      "description": "系统复位按钮"
+    },
+    {
+      "name": "运行指示灯",
+      "device_type": "Y",
+      "address": 0,
+      "data_type": "bool",
+      "description": "设备运行指示灯"
+    },
+    {
+      "name": "故障指示灯",
+      "device_type": "Y",
+      "address": 1,
+      "data_type": "bool",
+      "description": "设备故障指示灯"
+    },
+    {
+      "name": "报警蜂鸣器",
+      "device_type": "Y", 
+      "address": 2,
+      "data_type": "bool",
+      "description": "报警蜂鸣器控制"
+    }
+  ],
+  
+  "data_generator": {
+    "type": "composite",
+    "generators": [
+      {
+        "type": "sine",
+        "name": "温度传感器数据",
+        "amplitude": 500,
+        "frequency": 0.05,
+        "offset": 2500,
+        "addresses": [0, 1]
+      },
+      {
+        "type": "sine",
+        "name": "压力传感器数据",
+        "amplitude": 200,
+        "frequency": 0.08,
+        "offset": 500,
+        "phase": 1.57,
+        "addresses": [2]
+      },
+      {
+        "type": "random",
+        "name": "流量传感器数据",
+        "min_value": 80,
+        "max_value": 120,
+        "data_type": "int",
+        "addresses": [3]
+      },
+      {
+        "type": "linear",
+        "name": "转速传感器数据",
+        "start_value": 1000,
+        "end_value": 3000,
+        "duration": 30.0,
+        "repeat": true,
+        "addresses": [4]
+      },
+      {
+        "type": "sine",
+        "name": "位置传感器X轴",
+        "amplitude": 1000,
+        "frequency": 0.1,
+        "offset": 5000,
+        "addresses": [10]
+      },
+      {
+        "type": "sine",
+        "name": "位置传感器Y轴", 
+        "amplitude": 800,
+        "frequency": 0.12,
+        "offset": 4000,
+        "phase": 2.09,
+        "addresses": [11]
+      },
+      {
+        "type": "sine",
+        "name": "位置传感器Z轴",
+        "amplitude": 600,
+        "frequency": 0.08,
+        "offset": 3000,
+        "phase": 4.18,
+        "addresses": [12]
+      },
+      {
+        "type": "step",
+        "name": "电机状态控制",
+        "values": [true, true, true, false, false],
+        "step_interval": 8.0,
+        "addresses": [1000]
+      },
+      {
+        "type": "step",
+        "name": "模式切换",
+        "values": [true, false],
+        "step_interval": 15.0, 
+        "addresses": [1020, 1021]
+      },
+      {
+        "type": "random",
+        "name": "随机报警",
+        "min_value": 0,
+        "max_value": 1,
+        "data_type": "int",
+        "addresses": [1010]
+      }
+    ]
+  },
+  
+  "simulation_settings": {
+    "enable_network_delay": false,
+    "network_delay_ms": 20,
+    "enable_connection_drops": false,
+    "connection_drop_probability": 0.01,
+    "enable_data_errors": false,
+    "data_error_probability": 0.001,
+    "enable_plc_status_simulation": true,
+    "plc_cycle_time_ms": 10
+  },
+  
+  "logging": {
+    "level": "INFO",
+    "enable_request_logging": true,
+    "enable_data_logging": false,
+    "enable_communication_logging": true
+  }
+} 

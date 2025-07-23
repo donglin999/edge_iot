@@ -50,7 +50,7 @@
 
 ### 目录结构
 ```
-api/
+backend/
 ├── main.py                 # FastAPI应用入口
 ├── routers/               # 路由模块
 │   ├── __init__.py

@@ -198,44 +198,33 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ElMessage } from 'element-plus'
+import systemApi from '../../services/systemApi'
 
 export default {
   name: 'SystemMonitorContent',
   setup() {
     const systemStats = ref({
-      cpu: 45.2,
-      memory: 68.5,
-      disk: 72.1,
+      cpu: 0,
+      memory: 0,
+      disk: 0,
       network: '正常'
     })
 
     const systemInfo = ref({
-      os: 'Ubuntu 20.04 LTS',
-      version: 'Linux 5.4.0-74-generic',
-      uptime: '15天 8小时',
-      cpuModel: 'Intel Core i7-9700K',
-      totalMemory: '16.0 GB',
-      availableMemory: '5.1 GB'
+      os: '',
+      version: '',
+      uptime: '',
+      cpuModel: '',
+      totalMemory: '',
+      availableMemory: ''
     })
 
-    const services = ref([
-      { name: 'nginx', status: 'running' },
-      { name: 'influxdb', status: 'running' },
-      { name: 'redis', status: 'running' },
-      { name: 'postgres', status: 'stopped' },
-      { name: 'docker', status: 'running' }
-    ])
-
+    const services = ref([])
     const logLevel = ref('all')
-
-    const logs = ref([
-      { id: 1, timestamp: '2024-01-15 14:30:00', level: 'INFO', message: '系统启动完成' },
-      { id: 2, timestamp: '2024-01-15 14:30:15', level: 'INFO', message: 'ModbusTCP收集器连接成功' },
-      { id: 3, timestamp: '2024-01-15 14:30:30', level: 'WARNING', message: 'PLC-003连接超时，正在重试' },
-      { id: 4, timestamp: '2024-01-15 14:30:45', level: 'ERROR', message: 'MelsoftA1E收集器连接失败' },
-      { id: 5, timestamp: '2024-01-15 14:31:00', level: 'INFO', message: '数据库连接正常' }
-    ])
+    const logs = ref([])
+    let refreshTimer = null
 
     const filteredLogs = computed(() => {
       if (logLevel.value === 'all') {
@@ -244,29 +233,139 @@ export default {
       return logs.value.filter(log => log.level.toLowerCase() === logLevel.value.toLowerCase())
     })
 
-    const refreshSystem = () => {
-      console.log('刷新系统状态')
+    // API 调用函数
+    const loadSystemMetrics = async () => {
+      try {
+        const response = await systemApi.getSystemMetrics()
+        systemStats.value = {
+          cpu: response.cpu_percent || 0,
+          memory: response.memory_percent || 0,
+          disk: response.disk_usage || 0,
+          network: '正常'
+        }
+      } catch (error) {
+        console.error('Failed to load system metrics:', error)
+      }
+    }
+
+    const loadSystemInfo = async () => {
+      try {
+        const response = await systemApi.getSystemInfo()
+        systemInfo.value = {
+          os: response.os || '',
+          version: response.version || '',
+          uptime: response.uptime || '',
+          cpuModel: `${response.arch} ${response.cpu_cores}核心`,
+          totalMemory: response.total_memory || '',
+          availableMemory: response.total_memory || ''
+        }
+      } catch (error) {
+        console.error('Failed to load system info:', error)
+      }
+    }
+
+    const loadServices = async () => {
+      try {
+        const response = await systemApi.getServiceStatus()
+        services.value = response.services || []
+      } catch (error) {
+        console.error('Failed to load services:', error)
+      }
+    }
+
+    const loadSystemLogs = async () => {
+      try {
+        const response = await systemApi.getSystemLogs(logLevel.value, 50)
+        logs.value = response.logs || []
+      } catch (error) {
+        console.error('Failed to load system logs:', error)
+      }
+    }
+
+    const loadAllData = async () => {
+      await Promise.all([
+        loadSystemMetrics(),
+        loadSystemInfo(),
+        loadServices(),
+        loadSystemLogs()
+      ])
+    }
+
+    const refreshSystem = async () => {
+      try {
+        await loadAllData()
+        ElMessage.success('系统状态已刷新')
+      } catch (error) {
+        ElMessage.error('刷新失败')
+      }
     }
 
     const restartSystem = () => {
-      console.log('重启系统')
+      ElMessage.warning('重启系统功能暂未实现')
     }
 
     const exportLogs = () => {
-      console.log('导出日志')
+      try {
+        const logData = filteredLogs.value.map(log => 
+          `${log.timestamp} [${log.level}] ${log.message}`
+        ).join('\n')
+        
+        const blob = new Blob([logData], { type: 'text/plain' })
+        const url = window.URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = url
+        link.download = `system_logs_${new Date().toISOString().slice(0, 10)}.txt`
+        link.click()
+        window.URL.revokeObjectURL(url)
+        
+        ElMessage.success('日志导出成功')
+      } catch (error) {
+        ElMessage.error('导出日志失败')
+      }
     }
 
-    const startService = (service) => {
-      console.log('启动服务:', service.name)
+    const startService = async (service) => {
+      try {
+        await systemApi.controlService(service.name, 'start')
+        service.status = 'running'
+        ElMessage.success(`服务 ${service.name} 启动成功`)
+      } catch (error) {
+        ElMessage.error(`启动服务 ${service.name} 失败`)
+      }
     }
 
-    const stopService = (service) => {
-      console.log('停止服务:', service.name)
+    const stopService = async (service) => {
+      try {
+        await systemApi.controlService(service.name, 'stop')
+        service.status = 'stopped'
+        ElMessage.success(`服务 ${service.name} 停止成功`)
+      } catch (error) {
+        ElMessage.error(`停止服务 ${service.name} 失败`)
+      }
     }
 
-    const refreshLogs = () => {
-      console.log('刷新日志')
+    const refreshLogs = async () => {
+      try {
+        await loadSystemLogs()
+        ElMessage.success('日志已刷新')
+      } catch (error) {
+        ElMessage.error('刷新日志失败')
+      }
     }
+
+    onMounted(() => {
+      loadAllData()
+      // 设置定时刷新
+      refreshTimer = setInterval(() => {
+        loadSystemMetrics()
+      }, 30000) // 每30秒刷新系统指标
+    })
+
+    onUnmounted(() => {
+      if (refreshTimer) {
+        clearInterval(refreshTimer)
+      }
+    })
 
     return {
       systemStats,

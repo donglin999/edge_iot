@@ -1,0 +1,123 @@
+{
+  "devices": {
+    "设备1": {
+      "name": "设备1",
+      "protocol": "modbus_tcp",
+      "connection": {
+        "host": "192.168.1.100",
+        "port": 502
+      },
+      "points": [
+        {
+          "name": "温度",
+          "address": "40001",
+          "data_type": "float"
+        },
+        {
+          "name": "压力",
+          "address": "40002",
+          "data_type": "float"
+        },
+        {
+          "name": "流量",
+          "address": "40003",
+          "data_type": "float"
+        }
+      ],
+      "interval": 1000
+    },
+    "设备2": {
+      "name": "设备2",
+      "protocol": "opcua",
+      "connection": {
+        "host": "192.168.1.101",
+        "port": 4840
+      },
+      "points": [
+        {
+          "name": "电压",
+          "address": "ns=2;s=Voltage",
+          "data_type": "float"
+        },
+        {
+          "name": "电流",
+          "address": "ns=2;s=Current",
+          "data_type": "float"
+        }
+      ],
+      "interval": 500
+    },
+    "PLC设备": {
+      "name": "PLC设备",
+      "protocol": "melsoft_a1e",
+      "connection": {
+        "host": "192.168.1.102",
+        "port": 5007
+      },
+      "points": [
+        {
+          "name": "状态",
+          "address": "M100",
+          "data_type": "bool"
+        },
+        {
+          "name": "计数",
+          "address": "D100",
+          "data_type": "int"
+        }
+      ],
+      "interval": 2000
+    }
+  },
+  "processes": {
+    "modbus_collector_设备1": {
+      "type": "modbus",
+      "command": [
+        "python",
+        "-m",
+        "apps.collector.modbustcp_influx"
+      ],
+      "config_file": "configs/modbus_设备1_config.json",
+      "description": "Modbus TCP数据采集进程 - 设备1",
+      "auto_restart": true,
+      "max_restarts": 5,
+      "working_directory": "../project-data-acquisition"
+    },
+    "opcua_collector_设备2": {
+      "type": "opcua",
+      "command": [
+        "python",
+        "-m",
+        "apps.collector.opcua_influx"
+      ],
+      "config_file": "configs/opcua_设备2_config.json",
+      "description": "OPC UA数据采集进程 - 设备2",
+      "auto_restart": true,
+      "max_restarts": 5,
+      "working_directory": "../project-data-acquisition"
+    },
+    "melsoft_collector_plc设备": {
+      "type": "melsoft",
+      "command": [
+        "python",
+        "-m",
+        "apps.collector.melseca1enet_influx"
+      ],
+      "config_file": "configs/melsoft_plc设备_config.json",
+      "description": "Melsoft A1E数据采集进程 - PLC设备",
+      "auto_restart": true,
+      "max_restarts": 3,
+      "working_directory": "../project-data-acquisition"
+    }
+  },
+  "metadata": {
+    "total_devices": 3,
+    "total_points": 7,
+    "protocols": [
+      "modbus_tcp",
+      "melsoft_a1e",
+      "opcua"
+    ],
+    "generated_at": "2025-07-14T00:45:56.260935"
+  }
+}

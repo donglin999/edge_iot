@@ -1,0 +1,43 @@
+{
+  "processes": {
+    "modbus_collector_设备1": {
+      "type": "modbus",
+      "command": [
+        "python3",
+        "-m",
+        "apps.collector.modbustcp_influx"
+      ],
+      "config_file": "configs/modbus_设备1_config.json",
+      "description": "Modbus TCP数据采集进程 - 设备1",
+      "auto_restart": true,
+      "max_restarts": 5,
+      "working_directory": "../project-data-acquisition"
+    },
+    "opcua_collector_设备2": {
+      "type": "opcua",
+      "command": [
+        "python3",
+        "-m",
+        "apps.collector.opcua_influx"
+      ],
+      "config_file": "configs/opcua_设备2_config.json",
+      "description": "OPC UA数据采集进程 - 设备2",
+      "auto_restart": true,
+      "max_restarts": 5,
+      "working_directory": "../project-data-acquisition"
+    },
+    "melsoft_collector_plc设备": {
+      "type": "melsoft",
+      "command": [
+        "python3",
+        "-m",
+        "apps.collector.melseca1enet_influx"
+      ],
+      "config_file": "configs/melsoft_plc设备_config.json",
+      "description": "Melsoft A1E数据采集进程 - PLC设备",
+      "auto_restart": true,
+      "max_restarts": 3,
+      "working_directory": "../project-data-acquisition"
+    }
+  }
+}

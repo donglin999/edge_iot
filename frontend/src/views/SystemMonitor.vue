@@ -276,6 +276,7 @@
 <script>
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
+import systemApi from '../services/systemApi'
 
 export default {
   name: 'SystemMonitor',
@@ -283,50 +284,32 @@ export default {
     const logLevel = ref('all')
     const chartTimeRange = ref('1h')
 
+    // Data from API
     const systemMetrics = ref({
-      cpu: 35,
-      memory: 68,
-      disk: 45,
-      networkDown: 12.5,
-      networkUp: 8.3
+      cpu: 0,
+      memory: 0,
+      disk: 0,
+      networkDown: 0,
+      networkUp: 0
     })
 
     const systemInfo = ref({
-      os: 'Ubuntu 20.04 LTS',
-      version: 'Linux 5.4.0-42-generic',
-      arch: 'x86_64',
-      cpuCores: 8,
-      totalMemory: '16.0 GB',
-      bootTime: '2023-12-01 08:00:00',
-      uptime: '5天 12小时 30分钟'
+      os: '',
+      version: '',
+      arch: '',
+      cpuCores: 0,
+      totalMemory: '',
+      bootTime: '',
+      uptime: ''
     })
 
-    const services = ref([
-      { name: 'FastAPI', status: 'running', uptime: '5d 12h', description: 'Web API服务' },
-      { name: 'InfluxDB', status: 'running', uptime: '5d 12h', description: '时序数据库' },
-      { name: 'Nginx', status: 'running', uptime: '5d 12h', description: '反向代理服务器' },
-      { name: 'Redis', status: 'stopped', uptime: '0', description: '缓存服务' },
-      { name: 'Collector', status: 'running', uptime: '2d 8h', description: '数据采集服务' }
-    ])
-
-    const databases = ref([
-      { name: 'InfluxDB', status: '已连接', url: 'http://localhost:8086', responseTime: '15ms' },
-      { name: 'SQLite', status: '已连接', url: './data/iot.db', responseTime: '2ms' },
-      { name: 'Redis', status: '连接失败', url: 'localhost:6379', responseTime: '-' }
-    ])
-
-    const systemLogs = ref([
-      { id: 1, time: '2023-12-01 15:30:25', level: 'info', message: '系统监控服务启动' },
-      { id: 2, time: '2023-12-01 15:30:20', level: 'warn', message: 'Redis连接失败，使用内存缓存' },
-      { id: 3, time: '2023-12-01 15:30:15', level: 'info', message: 'InfluxDB连接成功' },
-      { id: 4, time: '2023-12-01 15:30:10', level: 'error', message: '配置文件validation_config.xlsx验证失败' },
-      { id: 5, time: '2023-12-01 15:30:05', level: 'info', message: 'FastAPI服务启动完成' },
-      { id: 6, time: '2023-12-01 15:30:00', level: 'info', message: '数据采集进程启动' }
-    ])
+    const services = ref([])
+    const databases = ref([])
+    const systemLogs = ref([])
 
     const filteredLogs = computed(() => {
       if (logLevel.value === 'all') return systemLogs.value
-      return systemLogs.value.filter(log => log.level === logLevel.value)
+      return systemLogs.value.filter(log => log.level.toLowerCase() === logLevel.value.toLowerCase())
     })
 
     const getProgressColor = (percentage) => {
@@ -344,7 +327,7 @@ export default {
     }
 
     const getLogType = (level) => {
-      switch (level) {
+      switch (level.toLowerCase()) {
         case 'error': return 'danger'
         case 'warn': return 'warning'
         case 'info': return 'info'
@@ -353,62 +336,138 @@ export default {
     }
 
     const formatTime = (timeStr) => {
+      if (!timeStr) return '-'
       return new Date(timeStr).toLocaleString('zh-CN')
     }
 
     const formatLogTime = (timeStr) => {
+      if (!timeStr) return '-'
       return new Date(timeStr).toLocaleTimeString('zh-CN')
+    }
+
+    // API functions
+    const loadSystemMetrics = async () => {
+      try {
+        const response = await systemApi.getSystemMetrics()
+        systemMetrics.value = {
+          cpu: response.cpu_percent || 0,
+          memory: response.memory_percent || 0,
+          disk: response.disk_usage || 0,
+          networkDown: response.network_io?.bytes_recv_mb || 0,
+          networkUp: response.network_io?.bytes_sent_mb || 0
+        }
+      } catch (error) {
+        console.error('Failed to load system metrics:', error)
+        ElMessage.error('加载系统指标失败')
+      }
+    }
+
+    const loadSystemInfo = async () => {
+      try {
+        const response = await systemApi.getSystemInfo()
+        systemInfo.value = {
+          os: response.os || '',
+          version: response.version || '',
+          arch: response.arch || '',
+          cpuCores: response.cpu_cores || 0,
+          totalMemory: response.total_memory || '',
+          bootTime: response.boot_time || '',
+          uptime: response.uptime || ''
+        }
+      } catch (error) {
+        console.error('Failed to load system info:', error)
+        ElMessage.error('加载系统信息失败')
+      }
+    }
+
+    const loadServices = async () => {
+      try {
+        const response = await systemApi.getServiceStatus()
+        services.value = response.services || []
+      } catch (error) {
+        console.error('Failed to load services:', error)
+        ElMessage.error('加载服务状态失败')
+      }
+    }
+
+    const loadDatabases = async () => {
+      try {
+        const response = await systemApi.getDatabaseStatus()
+        databases.value = response.databases || []
+      } catch (error) {
+        console.error('Failed to load databases:', error)
+        ElMessage.error('加载数据库状态失败')
+      }
+    }
+
+    const loadSystemLogs = async () => {
+      try {
+        const response = await systemApi.getSystemLogs(logLevel.value, 100)
+        systemLogs.value = response.logs || []
+      } catch (error) {
+        console.error('Failed to load system logs:', error)
+        ElMessage.error('加载系统日志失败')
+      }
     }
 
     const refreshSystemInfo = async () => {
       try {
-        // 模拟刷新
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        
-        // 随机更新指标
-        systemMetrics.value.cpu = Math.floor(Math.random() * 40) + 20
-        systemMetrics.value.memory = Math.floor(Math.random() * 30) + 50
-        systemMetrics.value.disk = Math.floor(Math.random() * 20) + 40
-        
+        await Promise.all([
+          loadSystemMetrics(),
+          loadSystemInfo()
+        ])
         ElMessage.success('系统信息已刷新')
       } catch (error) {
         ElMessage.error('刷新失败')
       }
     }
 
-    const refreshServices = () => {
+    const refreshServices = async () => {
+      await loadServices()
       ElMessage.success('服务状态已刷新')
     }
 
     const testConnections = async () => {
       try {
-        await new Promise(resolve => setTimeout(resolve, 1500))
+        await systemApi.testDatabaseConnections()
+        await loadDatabases()
         ElMessage.success('数据库连接测试完成')
       } catch (error) {
         ElMessage.error('连接测试失败')
       }
     }
 
-    const refreshLogs = () => {
-      // 添加新日志
-      const newLog = {
-        id: systemLogs.value.length + 1,
-        time: new Date().toISOString(),
-        level: 'info',
-        message: '系统日志已刷新'
-      }
-      systemLogs.value.unshift(newLog)
+    const refreshLogs = async () => {
+      await loadSystemLogs()
       ElMessage.success('日志已刷新')
     }
 
-    const toggleService = (service) => {
-      const action = service.status === 'running' ? '停止' : '启动'
-      service.status = service.status === 'running' ? 'stopped' : 'running'
-      ElMessage.success(`服务 ${service.name} ${action}成功`)
+    const toggleService = async (service) => {
+      try {
+        const action = service.status === 'running' ? 'stop' : 'start'
+        await systemApi.controlService(service.name, action)
+        service.status = service.status === 'running' ? 'stopped' : 'running'
+        ElMessage.success(`服务 ${service.name} ${action === 'start' ? '启动' : '停止'}成功`)
+      } catch (error) {
+        console.error('Failed to control service:', error)
+        ElMessage.error(`服务操作失败`)
+      }
+    }
+
+    const loadAllData = async () => {
+      await Promise.all([
+        loadSystemMetrics(),
+        loadSystemInfo(),
+        loadServices(),
+        loadDatabases(),
+        loadSystemLogs()
+      ])
     }
 
     onMounted(() => {
-      refreshSystemInfo()
+      loadAllData()
+      // Set up periodic refresh for metrics
+      setInterval(loadSystemMetrics, 30000) // Refresh every 30 seconds
     })
 
     return {

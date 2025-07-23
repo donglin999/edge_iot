@@ -1,0 +1,29 @@
+{
+  "device": {
+    "name": "设备2",
+    "protocol": "opcua",
+    "connection": {
+      "host": "192.168.1.101",
+      "port": 4840
+    },
+    "points": [
+      {
+        "name": "电压",
+        "address": "ns=2;s=Voltage",
+        "data_type": "float"
+      },
+      {
+        "name": "电流",
+        "address": "ns=2;s=Current",
+        "data_type": "float"
+      }
+    ],
+    "interval": 500
+  },
+  "influxdb": {
+    "url": "http://localhost:8086",
+    "token": "iot-token-12345",
+    "org": "iot-org",
+    "bucket": "iot-data"
+  }
+}

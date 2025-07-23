@@ -1,0 +1,31 @@
+{
+  "source_ip": "192.168.1.102",
+  "source_port": 5000,
+  "fs": 1,
+  "addresses": [
+    {
+      "name": "M100",
+      "address": "M100",
+      "data_type": "bool",
+      "description": "PLC内存位M100"
+    },
+    {
+      "name": "D1000",
+      "address": "D1000",
+      "data_type": "float",
+      "description": "PLC数据寄存器D1000"
+    },
+    {
+      "name": "X0",
+      "address": "X0",
+      "data_type": "bool",
+      "description": "PLC输入点X0"
+    }
+  ],
+  "influxdb": {
+    "url": "http://localhost:8086",
+    "token": "iot-token-12345",
+    "org": "iot-org",
+    "bucket": "iot-data"
+  }
+}

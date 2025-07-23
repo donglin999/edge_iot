@@ -94,18 +94,15 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import processApi from '../../services/processApi'
 
 export default {
   name: 'ProcessMonitorContent',
   setup() {
-    const processes = ref([
-      { name: 'modbus_collector', type: 'ModbusTCP', status: 'running', cpu: '2.5%', memory: '45.2MB', startTime: '2024-01-15 09:30:00' },
-      { name: 'opcua_collector', type: 'OPC UA', status: 'running', cpu: '3.1%', memory: '52.8MB', startTime: '2024-01-15 09:30:15' },
-      { name: 'melsoft_collector', type: 'MelsoftA1E', status: 'stopped', cpu: '0%', memory: '0MB', startTime: '-' },
-      { name: 'generic_plc', type: 'GenericPLC', status: 'running', cpu: '1.8%', memory: '38.5MB', startTime: '2024-01-15 09:31:00' },
-      { name: 'data_processor', type: 'DataProcessor', status: 'running', cpu: '4.2%', memory: '67.3MB', startTime: '2024-01-15 09:32:00' }
-    ])
+    const processes = ref([])
+    let refreshTimer = null
 
     const totalProcesses = computed(() => processes.value.length)
     const runningProcesses = computed(() => processes.value.filter(p => p.status === 'running').length)
@@ -113,37 +110,153 @@ export default {
     const avgCpuUsage = computed(() => {
       const running = processes.value.filter(p => p.status === 'running')
       if (running.length === 0) return 0
-      const total = running.reduce((sum, p) => sum + parseFloat(p.cpu.replace('%', '')), 0)
+      const total = running.reduce((sum, p) => {
+        const cpuStr = typeof p.cpu === 'string' ? p.cpu.replace('%', '') : p.cpu
+        return sum + parseFloat(cpuStr || 0)
+      }, 0)
       return (total / running.length).toFixed(1)
     })
 
-    const refreshProcesses = () => {
-      console.log('刷新进程列表')
+    const loadProcesses = async () => {
+      try {
+        const response = await processApi.getProcesses()
+        processes.value = response.processes || []
+      } catch (error) {
+        console.error('Failed to load processes:', error)
+        ElMessage.error('加载进程数据失败')
+      }
     }
 
-    const startAllProcesses = () => {
-      console.log('启动所有进程')
+    const refreshProcesses = async () => {
+      try {
+        await loadProcesses()
+        ElMessage.success('进程状态已刷新')
+      } catch (error) {
+        ElMessage.error('刷新失败')
+      }
     }
 
-    const stopAllProcesses = () => {
-      console.log('停止所有进程')
+    const startAllProcesses = async () => {
+      try {
+        await ElMessageBox.confirm('确定要启动所有进程吗？', '确认操作', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'info'
+        })
+        
+        const response = await processApi.startProcesses()
+        await loadProcesses()
+        
+        if (response.success) {
+          ElMessage.success(response.message || '所有进程启动成功')
+        } else {
+          ElMessage.error(response.message || '启动失败')
+        }
+      } catch (error) {
+        if (error !== 'cancel') {
+          console.error('Failed to start all processes:', error)
+          let errorMessage = '启动失败'
+          if (error.response && error.response.data) {
+            errorMessage = error.response.data.message || errorMessage
+          }
+          ElMessage.error(errorMessage)
+        }
+      }
     }
 
-    const restartAllProcesses = () => {
-      console.log('重启所有进程')
+    const stopAllProcesses = async () => {
+      try {
+        await ElMessageBox.confirm('确定要停止所有进程吗？', '确认操作', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+        
+        await processApi.stopProcesses()
+        await loadProcesses()
+        ElMessage.success('所有进程停止成功')
+      } catch (error) {
+        if (error !== 'cancel') {
+          console.error('Failed to stop all processes:', error)
+          ElMessage.error('停止失败')
+        }
+      }
     }
 
-    const startProcess = (process) => {
-      console.log('启动进程:', process.name)
+    const restartAllProcesses = async () => {
+      try {
+        await ElMessageBox.confirm('确定要重启所有进程吗？', '确认操作', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'info'
+        })
+        
+        await processApi.restartProcesses()
+        await loadProcesses()
+        ElMessage.success('所有进程重启成功')
+      } catch (error) {
+        if (error !== 'cancel') {
+          console.error('Failed to restart all processes:', error)
+          ElMessage.error('重启失败')
+        }
+      }
     }
 
-    const stopProcess = (process) => {
-      console.log('停止进程:', process.name)
+    const startProcess = async (process) => {
+      try {
+        const response = await processApi.startProcesses([process.name])
+        await loadProcesses()
+        
+        if (response.success) {
+          ElMessage.success(response.message || `进程 ${process.name} 启动成功`)
+        } else {
+          ElMessage.error(response.message || `启动进程 ${process.name} 失败`)
+        }
+      } catch (error) {
+        console.error('Failed to start process:', error)
+        let errorMessage = `启动进程 ${process.name} 失败`
+        if (error.response && error.response.data) {
+          errorMessage = error.response.data.message || errorMessage
+        }
+        ElMessage.error(errorMessage)
+      }
     }
 
-    const restartProcess = (process) => {
-      console.log('重启进程:', process.name)
+    const stopProcess = async (process) => {
+      try {
+        await processApi.stopProcesses([process.name])
+        await loadProcesses()
+        ElMessage.success(`进程 ${process.name} 停止成功`)
+      } catch (error) {
+        console.error('Failed to stop process:', error)
+        ElMessage.error(`停止进程 ${process.name} 失败`)
+      }
     }
+
+    const restartProcess = async (process) => {
+      try {
+        await processApi.restartProcesses([process.name])
+        await loadProcesses()
+        ElMessage.success(`进程 ${process.name} 重启成功`)
+      } catch (error) {
+        console.error('Failed to restart process:', error)
+        ElMessage.error(`重启进程 ${process.name} 失败`)
+      }
+    }
+
+    onMounted(() => {
+      loadProcesses()
+      // 设置定时刷新
+      refreshTimer = setInterval(() => {
+        loadProcesses()
+      }, 10000) // 每10秒刷新进程状态
+    })
+
+    onUnmounted(() => {
+      if (refreshTimer) {
+        clearInterval(refreshTimer)
+      }
+    })
 
     return {
       processes,

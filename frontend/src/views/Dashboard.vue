@@ -29,10 +29,6 @@
               <el-icon><Monitor /></el-icon>
               <span>仪表盘</span>
             </el-menu-item>
-            <el-menu-item index="processes">
-              <el-icon><Setting /></el-icon>
-              <span>进程监控</span>
-            </el-menu-item>
             <el-menu-item index="data">
               <el-icon><DataLine /></el-icon>
               <span>数据查看</span>
@@ -61,7 +57,7 @@
                       <el-icon><CircleCheck /></el-icon>
                     </div>
                     <div class="stats-info">
-                      <div class="stats-value">5</div>
+                      <div class="stats-value">{{ runningProcesses }}</div>
                       <div class="stats-label">运行中进程</div>
                     </div>
                   </div>
@@ -75,7 +71,7 @@
                       <el-icon><CircleClose /></el-icon>
                     </div>
                     <div class="stats-info">
-                      <div class="stats-value">2</div>
+                      <div class="stats-value">{{ stoppedProcesses }}</div>
                       <div class="stats-label">停止进程</div>
                     </div>
                   </div>
@@ -89,7 +85,7 @@
                       <el-icon><Cpu /></el-icon>
                     </div>
                     <div class="stats-info">
-                      <div class="stats-value">12</div>
+                      <div class="stats-value">{{ activeDevices }}</div>
                       <div class="stats-label">活跃设备</div>
                     </div>
                   </div>
@@ -103,7 +99,7 @@
                       <el-icon><TrendCharts /></el-icon>
                     </div>
                     <div class="stats-info">
-                      <div class="stats-value">156.2</div>
+                      <div class="stats-value">{{ dataRate }}</div>
                       <div class="stats-label">数据速率/秒</div>
                     </div>
                   </div>
@@ -118,7 +114,7 @@
                   <template #header>
                     <div class="card-header">
                       <span>实时数据趋势</span>
-                      <el-button type="primary" size="small">
+                      <el-button type="primary" size="small" @click="refreshDashboard">
                         <el-icon><Refresh /></el-icon>
                         刷新
                       </el-button>
@@ -152,22 +148,22 @@
                     <div class="card-header">
                       <span>进程状态</span>
                       <div class="process-actions">
-                        <el-button type="success" size="small">
+                        <el-button type="success" size="small" @click="startAllProcesses" :loading="loading">
                           <el-icon><VideoPlay /></el-icon>
                           全部启动
                         </el-button>
-                        <el-button type="warning" size="small">
+                        <el-button type="warning" size="small" @click="stopAllProcesses" :loading="loading">
                           <el-icon><VideoPause /></el-icon>
                           全部停止
                         </el-button>
-                        <el-button type="info" size="small">
+                        <el-button type="info" size="small" @click="refreshDashboard" :loading="loading">
                           <el-icon><Refresh /></el-icon>
                           刷新
                         </el-button>
                       </div>
                     </div>
                   </template>
-                  <el-table :data="mockProcesses" stripe>
+                  <el-table :data="processes" stripe v-loading="loading">
                     <el-table-column prop="name" label="进程名称" />
                     <el-table-column prop="type" label="类型" />
                     <el-table-column prop="status" label="状态">
@@ -177,14 +173,36 @@
                         </el-tag>
                       </template>
                     </el-table-column>
-                    <el-table-column prop="cpu" label="CPU%" />
-                    <el-table-column prop="memory" label="内存(MB)" />
+                    <el-table-column prop="cpu_percent" label="CPU%">
+                      <template #default="scope">
+                        {{ scope.row.cpu_percent ? scope.row.cpu_percent.toFixed(1) : '0.0' }}%
+                      </template>
+                    </el-table-column>
+                    <el-table-column prop="memory_mb" label="内存(MB)">
+                      <template #default="scope">
+                        {{ scope.row.memory_mb ? scope.row.memory_mb.toFixed(1) : '0.0' }}
+                      </template>
+                    </el-table-column>
                     <el-table-column label="操作">
                       <template #default="scope">
                         <el-button-group>
-                          <el-button size="small">启动</el-button>
-                          <el-button size="small">停止</el-button>
-                          <el-button size="small">重启</el-button>
+                          <el-button size="small" 
+                            @click="startProcess(scope.row.name)" 
+                            :disabled="scope.row.status === 'running'"
+                            :loading="scope.row.loading">
+                            启动
+                          </el-button>
+                          <el-button size="small" 
+                            @click="stopProcess(scope.row.name)"
+                            :disabled="scope.row.status === 'stopped'"
+                            :loading="scope.row.loading">
+                            停止
+                          </el-button>
+                          <el-button size="small" 
+                            @click="restartProcess(scope.row.name)"
+                            :loading="scope.row.loading">
+                            重启
+                          </el-button>
                         </el-button-group>
                       </template>
                     </el-table-column>
@@ -192,11 +210,6 @@
                 </el-card>
               </el-col>
             </el-row>
-          </div>
-
-          <!-- Process Monitor Content -->
-          <div v-show="activeTab === 'processes'" class="tab-content">
-            <ProcessMonitorContent />
           </div>
 
           <!-- Data Viewer Content -->
@@ -220,16 +233,18 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue'
-import ProcessMonitorContent from '../components/process/ProcessMonitorContent.vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import DataViewerContent from '../components/data/DataViewerContent.vue'
 import ConfigManagerContent from '../components/config/ConfigManagerContent.vue'
 import SystemMonitorContent from '../components/system/SystemMonitorContent.vue'
+import processApi from '../services/processApi'
+import systemApi from '../services/systemApi'
+import api from '../services/api'
+import { ElMessage } from 'element-plus'
 
 export default {
   name: 'Dashboard',
   components: {
-    ProcessMonitorContent,
     DataViewerContent,
     ConfigManagerContent,
     SystemMonitorContent
@@ -237,14 +252,24 @@ export default {
   setup() {
     const currentTime = ref('')
     const activeTab = ref('dashboard')
+    const loading = ref(false)
+    const processes = ref([])
+    const systemMetrics = ref({})
+    const dataStats = ref({})
     let timer = null
     
-    const mockProcesses = ref([
-      { name: 'modbus_collector', type: 'ModbusTCP', status: 'running', cpu: '2.5%', memory: '45.2MB' },
-      { name: 'opcua_collector', type: 'OPC UA', status: 'running', cpu: '3.1%', memory: '52.8MB' },
-      { name: 'melsoft_collector', type: 'MelsoftA1E', status: 'stopped', cpu: '0%', memory: '0MB' },
-      { name: 'generic_plc', type: 'GenericPLC', status: 'running', cpu: '1.8%', memory: '38.5MB' }
-    ])
+    // Computed properties for statistics
+    const runningProcesses = computed(() => 
+      processes.value.filter(p => p.status === 'running').length
+    )
+    
+    const stoppedProcesses = computed(() => 
+      processes.value.filter(p => p.status === 'stopped').length
+    )
+    
+    const activeDevices = computed(() => dataStats.value.active_devices || 0)
+    
+    const dataRate = computed(() => dataStats.value.realtime_rate || 0.0)
     
     const handleMenuSelect = (index) => {
       activeTab.value = index
@@ -255,8 +280,155 @@ export default {
       currentTime.value = now.toLocaleString('zh-CN')
     }
     
+    const loadProcesses = async () => {
+      try {
+        loading.value = true
+        const response = await processApi.getProcesses()
+        processes.value = response.processes || []
+      } catch (error) {
+        console.error('Failed to load processes:', error)
+        ElMessage.error('加载进程数据失败')
+        processes.value = []
+      } finally {
+        loading.value = false
+      }
+    }
+    
+    const loadSystemMetrics = async () => {
+      try {
+        const response = await systemApi.getSystemMetrics()
+        systemMetrics.value = response
+      } catch (error) {
+        console.error('Failed to load system metrics:', error)
+      }
+    }
+    
+    const loadDataStats = async () => {
+      try {
+        const response = await api.get('/api/data/statistics')
+        dataStats.value = response
+      } catch (error) {
+        console.error('Failed to load data stats:', error)
+      }
+    }
+    
+    const refreshDashboard = async () => {
+      await Promise.all([
+        loadProcesses(),
+        loadSystemMetrics(),
+        loadDataStats()
+      ])
+    }
+    
+    const startAllProcesses = async () => {
+      try {
+        loading.value = true
+        const response = await processApi.startProcesses([])
+        if (response.success) {
+          ElMessage.success(response.message)
+          await loadProcesses()
+        } else {
+          ElMessage.error(response.message)
+        }
+      } catch (error) {
+        console.error('Failed to start all processes:', error)
+        ElMessage.error('启动所有进程失败')
+      } finally {
+        loading.value = false
+      }
+    }
+    
+    const stopAllProcesses = async () => {
+      try {
+        loading.value = true
+        const response = await processApi.stopProcesses([])
+        if (response.success) {
+          ElMessage.success(response.message)
+          await loadProcesses()
+        } else {
+          ElMessage.error(response.message)
+        }
+      } catch (error) {
+        console.error('Failed to stop all processes:', error)
+        ElMessage.error('停止所有进程失败')
+      } finally {
+        loading.value = false
+      }
+    }
+    
+    const startProcess = async (processName) => {
+      try {
+        // Set loading state for specific process
+        const process = processes.value.find(p => p.name === processName)
+        if (process) process.loading = true
+        
+        const response = await processApi.startProcesses([processName])
+        if (response.success) {
+          ElMessage.success(`进程 ${processName} 启动成功`)
+          await loadProcesses()
+        } else {
+          ElMessage.error(response.message)
+        }
+      } catch (error) {
+        console.error(`Failed to start process ${processName}:`, error)
+        ElMessage.error(`启动进程 ${processName} 失败`)
+      } finally {
+        const process = processes.value.find(p => p.name === processName)
+        if (process) process.loading = false
+      }
+    }
+    
+    const stopProcess = async (processName) => {
+      try {
+        const process = processes.value.find(p => p.name === processName)
+        if (process) process.loading = true
+        
+        const response = await processApi.stopProcesses([processName])
+        if (response.success) {
+          ElMessage.success(`进程 ${processName} 停止成功`)
+          await loadProcesses()
+        } else {
+          ElMessage.error(response.message)
+        }
+      } catch (error) {
+        console.error(`Failed to stop process ${processName}:`, error)
+        ElMessage.error(`停止进程 ${processName} 失败`)
+      } finally {
+        const process = processes.value.find(p => p.name === processName)
+        if (process) process.loading = false
+      }
+    }
+    
+    const restartProcess = async (processName) => {
+      try {
+        const process = processes.value.find(p => p.name === processName)
+        if (process) process.loading = true
+        
+        const response = await processApi.restartProcesses([processName])
+        if (response.success) {
+          ElMessage.success(`进程 ${processName} 重启成功`)
+          await loadProcesses()
+        } else {
+          ElMessage.error(response.message)
+        }
+      } catch (error) {
+        console.error(`Failed to restart process ${processName}:`, error)
+        ElMessage.error(`重启进程 ${processName} 失败`)
+      } finally {
+        const process = processes.value.find(p => p.name === processName)
+        if (process) process.loading = false
+      }
+    }
+    
     const startTimer = () => {
-      timer = setInterval(updateTime, 1000)
+      timer = setInterval(() => {
+        updateTime()
+        // Refresh metrics every 30 seconds
+        if (Date.now() % 30000 < 1000) {
+          loadSystemMetrics()
+          loadDataStats()
+        }
+      }, 1000)
     }
     
     const stopTimer = () => {
@@ -266,9 +438,10 @@ export default {
       }
     }
     
-    onMounted(() => {
+    onMounted(async () => {
       updateTime()
       startTimer()
+      await refreshDashboard()
     })
     
     onUnmounted(() => {
@@ -278,8 +451,19 @@ export default {
     return {
       currentTime,
       activeTab,
-      mockProcesses,
-      handleMenuSelect
+      loading,
+      processes,
+      runningProcesses,
+      stoppedProcesses,
+      activeDevices,
+      dataRate,
+      handleMenuSelect,
+      refreshDashboard,
+      startAllProcesses,
+      stopAllProcesses,
+      startProcess,
+      stopProcess,
+      restartProcess
     }
   }
 }

@@ -170,6 +170,7 @@
 <script>
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import processApi from '../services/processApi'
 
 export default {
   name: 'ProcessMonitor',
@@ -180,60 +181,9 @@ export default {
     const selectedProcess = ref(null)
     const processLogs = ref('')
     
-    // Mock data - 在实际项目中应该从API获取
-    const processes = ref([
-      {
-        name: 'modbus_tcp_collector',
-        type: 'ModbusTCP',
-        pid: 1234,
-        status: 'running',
-        cpu: '2.5%',
-        memory: '45.2MB',
-        uptime: '2h 35m',
-        startTime: '2023-12-01 10:30:00'
-      },
-      {
-        name: 'opcua_collector',
-        type: 'OPC UA',
-        pid: 1235,
-        status: 'running',
-        cpu: '3.1%',
-        memory: '52.8MB',
-        uptime: '2h 30m',
-        startTime: '2023-12-01 10:35:00'
-      },
-      {
-        name: 'melsoft_a1e_collector',
-        type: 'MelsoftA1E',
-        pid: null,
-        status: 'stopped',
-        cpu: '0%',
-        memory: '0MB',
-        uptime: '0m',
-        startTime: null
-      },
-      {
-        name: 'generic_plc_collector',
-        type: 'GenericPLC',
-        pid: 1237,
-        status: 'running',
-        cpu: '1.8%',
-        memory: '38.5MB',
-        uptime: '1h 45m',
-        startTime: '2023-12-01 11:20:00'
-      },
-      {
-        name: 'data_processor',
-        type: 'DataProcessor',
-        pid: null,
-        status: 'error',
-        cpu: '0%',
-        memory: '0MB',
-        uptime: '0m',
-        startTime: null
-      }
-    ])
-
+    // Process data from API
+    const processes = ref([])
+    
     const filteredProcesses = computed(() => {
       if (!searchText.value) return processes.value
       return processes.value.filter(process =>
@@ -275,17 +225,23 @@ export default {
       return new Date(timeStr).toLocaleString('zh-CN')
     }
 
-    const refreshProcesses = async () => {
+    const loadProcesses = async () => {
       loading.value = true
       try {
-        // 模拟API调用
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        ElMessage.success('进程状态已刷新')
+        const response = await processApi.getProcesses()
+        processes.value = response.processes || []
       } catch (error) {
-        ElMessage.error('刷新失败')
+        console.error('Failed to load processes:', error)
+        ElMessage.error('加载进程数据失败')
+        processes.value = []
       } finally {
         loading.value = false
       }
+    }
+
+    const refreshProcesses = async () => {
+      await loadProcesses()
+      ElMessage.success('进程状态已刷新')
     }
 
     const startAllProcesses = async () => {
@@ -296,9 +252,12 @@ export default {
           type: 'info'
         })
         
+        await processApi.startProcesses()
+        await loadProcesses()
         ElMessage.success('所有进程启动成功')
       } catch (error) {
         if (error !== 'cancel') {
+          console.error('Failed to start processes:', error)
           ElMessage.error('启动失败')
         }
       }
@@ -312,9 +271,12 @@ export default {
           type: 'warning'
         })
         
+        await processApi.stopProcesses()
+        await loadProcesses()
         ElMessage.success('所有进程停止成功')
       } catch (error) {
         if (error !== 'cancel') {
+          console.error('Failed to stop processes:', error)
           ElMessage.error('停止失败')
         }
       }
@@ -328,45 +290,81 @@ export default {
           type: 'info'
         })
         
+        await processApi.restartProcesses()
+        await loadProcesses()
         ElMessage.success('所有进程重启成功')
       } catch (error) {
         if (error !== 'cancel') {
+          console.error('Failed to restart processes:', error)
           ElMessage.error('重启失败')
         }
       }
     }
 
-    const startProcess = (process) => {
-      ElMessage.success(`进程 ${process.name} 启动成功`)
+    const startProcess = async (process) => {
+      try {
+        await processApi.startProcesses([process.name])
+        await loadProcesses()
+        ElMessage.success(`进程 ${process.name} 启动成功`)
+      } catch (error) {
+        console.error('Failed to start process:', error)
+        ElMessage.error(`进程 ${process.name} 启动失败`)
+      }
     }
 
-    const stopProcess = (process) => {
-      ElMessage.success(`进程 ${process.name} 停止成功`)
+    const stopProcess = async (process) => {
+      try {
+        await processApi.stopProcesses([process.name])
+        await loadProcesses()
+        ElMessage.success(`进程 ${process.name} 停止成功`)
+      } catch (error) {
+        console.error('Failed to stop process:', error)
+        ElMessage.error(`进程 ${process.name} 停止失败`)
+      }
     }
 
-    const restartProcess = (process) => {
-      ElMessage.success(`进程 ${process.name} 重启成功`)
+    const restartProcess = async (process) => {
+      try {
+        await processApi.restartProcesses([process.name])
+        await loadProcesses()
+        ElMessage.success(`进程 ${process.name} 重启成功`)
+      } catch (error) {
+        console.error('Failed to restart process:', error)
+        ElMessage.error(`进程 ${process.name} 重启失败`)
+      }
     }
 
-    const viewLogs = (process) => {
-      selectedProcess.value = process
-      processLogs.value = `[2023-12-01 10:30:00] INFO: 进程 ${process.name} 启动
-[2023-12-01 10:30:01] INFO: 连接到设备 192.168.1.100
-[2023-12-01 10:30:02] INFO: 开始数据采集
-[2023-12-01 10:30:10] INFO: 成功采集 100 个数据点
-[2023-12-01 10:30:20] INFO: 数据已写入InfluxDB
-[2023-12-01 10:30:30] INFO: 心跳检测正常`
-      logDialogVisible.value = true
+    const viewLogs = async (process) => {
+      try {
+        selectedProcess.value = process
+        const response = await processApi.getProcessLogs(process.name)
+        processLogs.value = response.logs?.map(log => 
+          `[${log.timestamp}] ${log.level}: ${log.message}`
+        ).join('\n') || '暂无日志数据'
+        logDialogVisible.value = true
+      } catch (error) {
+        console.error('Failed to load process logs:', error)
+        ElMessage.error('加载进程日志失败')
+      }
     }
 
-    const refreshLogs = () => {
+    const refreshLogs = async () => {
       if (selectedProcess.value) {
-        processLogs.value += `\n[${new Date().toLocaleString()}] INFO: 日志已刷新`
+        try {
+          const response = await processApi.getProcessLogs(selectedProcess.value.name)
+          processLogs.value = response.logs?.map(log => 
+            `[${log.timestamp}] ${log.level}: ${log.message}`
+          ).join('\n') || '暂无日志数据'
+          ElMessage.success('日志已刷新')
+        } catch (error) {
+          console.error('Failed to refresh logs:', error)
+          ElMessage.error('刷新日志失败')
+        }
       }
     }
 
     onMounted(() => {
-      refreshProcesses()
+      loadProcesses()
     })
 
     return {

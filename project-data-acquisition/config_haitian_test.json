@@ -1,0 +1,232 @@
+{
+  "test_name": "海天注塑机数据清单完整流程测试",
+  "database": {
+    "type": "influxdb",
+    "host": "localhost",
+    "port": 8086,
+    "username": "admin",
+    "password": "password123",
+    "database": "haitian_iot_test",
+    "organization": "iot-org",
+    "bucket": "haitian-data",
+    "token": "iot-token-12345"
+  },
+  "devices": [
+    {
+      "device_id": "haitian_modbus_01",
+      "device_name": "海天注塑机-Modbus",
+      "device_type": "modbus_tcp",
+      "enabled": true,
+      "connection": {
+        "host": "127.0.0.1",
+        "port": 502,
+        "unit_id": 1,
+        "timeout": 5
+      },
+      "sampling": {
+        "interval": 1000,
+        "retry_count": 3,
+        "retry_delay": 1000
+      },
+      "tags": [
+        {
+          "tag_name": "device_status",
+          "description": "设备状态",
+          "address": 40047,
+          "data_type": "INT16",
+          "unit": "无",
+          "scaling": 1.0,
+          "enabled": true
+        },
+        {
+          "tag_name": "output_pressure",
+          "description": "输出压力",
+          "address": 40001,
+          "data_type": "INT16",
+          "unit": "Bar",
+          "scaling": 0.1,
+          "enabled": true
+        },
+        {
+          "tag_name": "output_speed",
+          "description": "输出速度",
+          "address": 40002,
+          "data_type": "INT16",
+          "unit": "%",
+          "scaling": 1.0,
+          "enabled": true
+        },
+        {
+          "tag_name": "output_back_pressure",
+          "description": "输出背压",
+          "address": 40003,
+          "data_type": "INT16",
+          "unit": "Bar",
+          "scaling": 0.1,
+          "enabled": true
+        },
+        {
+          "tag_name": "cycle_time",
+          "description": "循环周期",
+          "address": 40004,
+          "data_type": "INT32",
+          "unit": "0.01S",
+          "scaling": 0.01,
+          "enabled": true
+        },
+        {
+          "tag_name": "action_timing",
+          "description": "动作计时",
+          "address": 40006,
+          "data_type": "INT16",
+          "unit": "0.01S",
+          "scaling": 0.01,
+          "enabled": true
+        },
+        {
+          "tag_name": "injection_position",
+          "description": "射出位置",
+          "address": 40007,
+          "data_type": "INT16",
+          "unit": "0.1mm",
+          "scaling": 0.1,
+          "enabled": true
+        },
+        {
+          "tag_name": "platen_position",
+          "description": "推力座位置",
+          "address": 40008,
+          "data_type": "INT16",
+          "unit": "0.1mm",
+          "scaling": 0.1,
+          "enabled": true
+        },
+        {
+          "tag_name": "ejector_position",
+          "description": "顶针位置",
+          "address": 40009,
+          "data_type": "INT16",
+          "unit": "0.1mm",
+          "scaling": 0.1,
+          "enabled": true
+        },
+        {
+          "tag_name": "production_count",
+          "description": "产量",
+          "address": 40069,
+          "data_type": "INT32",
+          "unit": "模",
+          "scaling": 1.0,
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "device_id": "haitian_opcua_36",
+      "device_name": "海天注塑机36#-OPC UA",
+      "device_type": "opcua",
+      "enabled": true,
+      "connection": {
+        "endpoint": "opc.tcp://127.0.0.1:4840/freeopcua/server/",
+        "namespace": "http://mock.iot.device/opcua001",
+        "timeout": 5
+      },
+      "sampling": {
+        "interval": 1000,
+        "retry_count": 3,
+        "retry_delay": 1000
+      },
+      "tags": [
+        {
+          "tag_name": "temperature",
+          "description": "温度",
+          "node_id": "Temperature",
+          "data_type": "Double",
+          "unit": "°C",
+          "scaling": 1.0,
+          "enabled": true
+        },
+        {
+          "tag_name": "pressure",
+          "description": "压力",
+          "node_id": "Pressure",
+          "data_type": "Double",
+          "unit": "Bar",
+          "scaling": 1.0,
+          "enabled": true
+        },
+        {
+          "tag_name": "flow_rate",
+          "description": "流量",
+          "node_id": "FlowRate",
+          "data_type": "Double",
+          "unit": "L/min",
+          "scaling": 1.0,
+          "enabled": true
+        },
+        {
+          "tag_name": "system_status",
+          "description": "系统状态",
+          "node_id": "SystemStatus",
+          "data_type": "Boolean",
+          "unit": "无",
+          "scaling": 1.0,
+          "enabled": true
+        },
+        {
+          "tag_name": "production_counter",
+          "description": "生产计数",
+          "node_id": "ProductionCounter",
+          "data_type": "Int32",
+          "unit": "个",
+          "scaling": 1.0,
+          "enabled": true
+        }
+      ]
+    }
+  ],
+  "test_parameters": {
+    "test_duration": 300,
+    "data_validation": {
+      "enabled": true,
+      "range_check": true,
+      "data_type_check": true,
+      "timestamp_check": true
+    },
+    "performance_monitoring": {
+      "enabled": true,
+      "cpu_threshold": 80,
+      "memory_threshold": 80,
+      "response_time_threshold": 1000
+    },
+    "logging": {
+      "level": "INFO",
+      "file": "haitian_test.log",
+      "max_size": "10MB",
+      "backup_count": 5
+    }
+  },
+  "alerts": {
+    "enabled": true,
+    "rules": [
+      {
+        "name": "高压力报警",
+        "condition": "output_pressure > 150",
+        "severity": "warning",
+        "action": "log"
+      },
+      {
+        "name": "设备故障报警",
+        "condition": "device_status == 0",
+        "severity": "critical",
+        "action": "email"
+      },
+      {
+        "name": "温度异常报警",
+        "condition": "temperature > 80 OR temperature < 10",
+        "severity": "warning",
+        "action": "log"
+      }
+    ]
+  }
+} 

@@ -1,0 +1,183 @@
+{
+  "device_id": "haitian_injection_machine_modbus",
+  "device_name": "海天注塑机Modbus设备",
+  "host": "0.0.0.0",
+  "port": 4196,
+  "unit_id": 1,
+  "update_interval": 1.0,
+  "data_generators": [
+    {
+      "name": "injection_machine_data",
+      "type": "composite",
+      "generators": [
+        {
+          "type": "random",
+          "min": 0,
+          "max": 3,
+          "data_type": "int"
+        },
+        {
+          "type": "linear",
+          "start": 0,
+          "increment": 1,
+          "max": 10000,
+          "data_type": "int"
+        },
+        {
+          "type": "sine",
+          "amplitude": 50,
+          "frequency": 0.1,
+          "offset": 100,
+          "data_type": "int"
+        },
+        {
+          "type": "random",
+          "min": 10,
+          "max": 90,
+          "data_type": "int"
+        },
+        {
+          "type": "sine",
+          "amplitude": 20,
+          "frequency": 0.05,
+          "offset": 80,
+          "data_type": "int"
+        }
+      ]
+    }
+  ],
+  "register_ranges": {
+    "holding_registers": {
+      "start": 40001,
+      "count": 1000
+    },
+    "input_registers": {
+      "start": 30001,
+      "count": 100
+    },
+    "coils": {
+      "start": 1,
+      "count": 100
+    },
+    "discrete_inputs": {
+      "start": 10001,
+      "count": 100
+    }
+  },
+  "data_mapping": {
+    "40001": {
+      "name": "输出压力",
+      "type": "INT16",
+      "unit": "Bar",
+      "generator_index": 2,
+      "scaling": 0.1
+    },
+    "40002": {
+      "name": "输出速度",
+      "type": "INT16",
+      "unit": "%",
+      "generator_index": 3,
+      "scaling": 1.0
+    },
+    "40003": {
+      "name": "输出背压",
+      "type": "INT16",
+      "unit": "Bar",
+      "generator_index": 4,
+      "scaling": 0.1
+    },
+    "40004": {
+      "name": "循环周期_低位",
+      "type": "INT16",
+      "unit": "0.01S",
+      "generator_index": 1,
+      "scaling": 1.0
+    },
+    "40005": {
+      "name": "循环周期_高位",
+      "type": "INT16",
+      "unit": "0.01S",
+      "generator_index": 1,
+      "scaling": 1.0
+    },
+    "40006": {
+      "name": "动作计时",
+      "type": "INT16",
+      "unit": "0.01S",
+      "generator_index": 1,
+      "scaling": 1.0
+    },
+    "40007": {
+      "name": "射出位置",
+      "type": "INT16",
+      "unit": "0.1mm",
+      "generator_index": 2,
+      "scaling": 10.0
+    },
+    "40008": {
+      "name": "推力座位置",
+      "type": "INT16",
+      "unit": "0.1mm",
+      "generator_index": 2,
+      "scaling": 10.0
+    },
+    "40009": {
+      "name": "顶针位置",
+      "type": "INT16",
+      "unit": "0.1mm",
+      "generator_index": 2,
+      "scaling": 10.0
+    },
+    "40010": {
+      "name": "座台位置",
+      "type": "INT16",
+      "unit": "0.1mm",
+      "generator_index": 2,
+      "scaling": 10.0
+    },
+    "40047": {
+      "name": "设备状态",
+      "type": "INT16",
+      "unit": "无",
+      "generator_index": 0,
+      "scaling": 1.0
+    },
+    "40069": {
+      "name": "产量_低位",
+      "type": "INT16",
+      "unit": "模",
+      "generator_index": 1,
+      "scaling": 1.0
+    },
+    "40070": {
+      "name": "产量_高位",
+      "type": "INT16",
+      "unit": "模",
+      "generator_index": 1,
+      "scaling": 1.0
+    }
+  },
+  "test_scenarios": [
+    {
+      "name": "正常运行",
+      "duration": 60,
+      "description": "模拟注塑机正常运行状态"
+    },
+    {
+      "name": "高压力模式",
+      "duration": 30,
+      "description": "模拟高压力运行状态",
+      "parameter_overrides": {
+        "pressure_multiplier": 1.5
+      }
+    },
+    {
+      "name": "故障模拟",
+      "duration": 15,
+      "description": "模拟设备故障状态",
+      "parameter_overrides": {
+        "error_rate": 0.1
+      }
+    }
+  ]
+} 

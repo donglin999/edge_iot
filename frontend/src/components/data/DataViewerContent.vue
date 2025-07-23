@@ -53,11 +53,14 @@
           <div class="filter-controls">
             <el-form :inline="true" :model="filterForm">
               <el-form-item label="设备">
-                <el-select v-model="filterForm.device" placeholder="选择设备">
+                <el-select v-model="filterForm.device" placeholder="选择设备" @change="handleDeviceChange">
                   <el-option label="全部" value="" />
-                  <el-option label="PLC-001" value="PLC-001" />
-                  <el-option label="PLC-002" value="PLC-002" />
-                  <el-option label="PLC-003" value="PLC-003" />
+                  <el-option 
+                    v-for="device in deviceList" 
+                    :key="device.id" 
+                    :label="device.name" 
+                    :value="device.id" 
+                  />
                 </el-select>
               </el-form-item>
               <el-form-item label="测点">
@@ -69,14 +72,12 @@
                   collapse-tags-tooltip
                   style="width: 200px;"
                 >
-                  <el-option label="温度" value="temperature" />
-                  <el-option label="压力" value="pressure" />
-                  <el-option label="转速" value="speed" />
-                  <el-option label="电流" value="current" />
-                  <el-option label="电压" value="voltage" />
-                  <el-option label="流量" value="flow" />
-                  <el-option label="液位" value="level" />
-                  <el-option label="功率" value="power" />
+                  <el-option 
+                    v-for="tag in tagList" 
+                    :key="tag.name" 
+                    :label="tag.description || tag.name" 
+                    :value="tag.name" 
+                  />
                 </el-select>
               </el-form-item>
               <el-form-item label="时间范围">
@@ -157,28 +158,35 @@
 </template>
 
 <script>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted, computed } from 'vue'
+import { ElMessage } from 'element-plus'
+import dataApi from '../../services/dataApi'
+import systemApi from '../../services/systemApi'
 
 export default {
   name: 'DataViewerContent',
   setup() {
     const deviceStats = ref({
-      total: 12,
-      online: 10,
-      offline: 2
+      total: 0,
+      online: 0,
+      offline: 0
     })
 
     const dataStats = ref({
-      todayPoints: 25670,
-      realtimeRate: 156.2
+      todayPoints: 0,
+      realtimeRate: 0
     })
 
-    // 数据库连接状态 - 这个数据应该从后端获取
     const databaseStatus = ref({
-      type: 'connected', // connected, disconnected, error
-      text: '已连接',
-      icon: 'SuccessFilled'
+      type: 'connected',
+      text: '检查中...',
+      icon: 'Loading'
     })
+
+    const deviceList = ref([])
+    const tagList = ref([])
+    const dataList = ref([])
+    let refreshTimer = null
 
     const filterForm = reactive({
       device: '',
@@ -186,39 +194,46 @@ export default {
       timeRange: []
     })
 
-    const dataList = ref([
-      { timestamp: '2024-01-15 14:30:00', device: 'PLC-001', parameter: '温度', value: '23.5', status: 'normal' },
-      { timestamp: '2024-01-15 14:30:01', device: 'PLC-001', parameter: '压力', value: '1.25', status: 'normal' },
-      { timestamp: '2024-01-15 14:30:02', device: 'PLC-002', parameter: '转速', value: '1500', status: 'normal' },
-      { timestamp: '2024-01-15 14:30:03', device: 'PLC-002', parameter: '电流', value: '12.8', status: 'warning' },
-      { timestamp: '2024-01-15 14:30:04', device: 'PLC-003', parameter: '电压', value: '380.2', status: 'normal' }
-    ])
-
-    const refreshData = () => {
-      console.log('刷新数据')
-      fetchDatabaseStatus()
+    // API调用函数
+    const loadDeviceStats = async () => {
+      try {
+        const devices = await dataApi.getDevices()
+        deviceStats.value = {
+          total: devices.length || 0,
+          online: devices.filter(d => d.status === 'online').length || 0,
+          offline: devices.filter(d => d.status === 'offline').length || 0
+        }
+        deviceList.value = devices || []
+      } catch (error) {
+        console.error('Failed to load device stats:', error)
+      }
     }
 
-    // 获取数据库状态 - 实际应该调用后端API
-    const fetchDatabaseStatus = async () => {
+    const loadDataStats = async () => {
       try {
-        // 模拟API调用
-        // const response = await fetch('/api/database/status')
-        // const data = await response.json()
-        
-        // 模拟不同状态
-        const statuses = [
-          { type: 'connected', text: '已连接', icon: 'SuccessFilled' },
-          { type: 'disconnected', text: '连接断开', icon: 'CircleClose' },
-          { type: 'error', text: '连接异常', icon: 'Warning' }
-        ]
-        
-        // 随机选择一个状态用于演示
-        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)]
-        databaseStatus.value = randomStatus
-        
+        const stats = await dataApi.getStatistics()
+        dataStats.value = {
+          todayPoints: stats.today_points || 0,
+          realtimeRate: stats.realtime_rate || 0
+        }
       } catch (error) {
-        console.error('获取数据库状态失败:', error)
+        console.error('Failed to load data stats:', error)
+      }
+    }
+
+    const loadDatabaseStatus = async () => {
+      try {
+        const response = await systemApi.getDatabaseStatus()
+        const influxdb = response.databases.find(db => db.name === 'InfluxDB')
+        if (influxdb) {
+          databaseStatus.value = {
+            type: influxdb.status === '已连接' ? 'connected' : 'disconnected',
+            text: influxdb.status,
+            icon: influxdb.status === '已连接' ? 'SuccessFilled' : 'CircleClose'
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load database status:', error)
         databaseStatus.value = {
           type: 'error',
           text: '获取状态失败',
@@ -227,38 +242,134 @@ export default {
       }
     }
 
-    // 组件挂载时获取数据库状态
-    onMounted(() => {
-      fetchDatabaseStatus()
-      // 可以设置定时器定期检查状态
-      setInterval(fetchDatabaseStatus, 30000) // 每30秒检查一次
-    })
+    const loadTagList = async () => {
+      try {
+        const measurements = await dataApi.getMeasurements(filterForm.device)
+        tagList.value = measurements || []
+      } catch (error) {
+        console.error('Failed to load tag list:', error)
+      }
+    }
 
-    const applyFilter = () => {
-      console.log('应用筛选:', filterForm)
+    const loadRealTimeData = async () => {
+      try {
+        const query = {
+          device: filterForm.device,
+          measurements: filterForm.tags,
+          start_time: filterForm.timeRange[0],
+          end_time: filterForm.timeRange[1],
+          limit: 100
+        }
+        
+        const response = await dataApi.getRealtimeData(query)
+        dataList.value = response.data || []
+      } catch (error) {
+        console.error('Failed to load real-time data:', error)
+        ElMessage.error('加载实时数据失败')
+      }
+    }
+
+    const loadAllData = async () => {
+      await Promise.all([
+        loadDeviceStats(),
+        loadDataStats(),
+        loadDatabaseStatus(),
+        loadTagList(),
+        loadRealTimeData()
+      ])
+    }
+
+    const refreshData = async () => {
+      try {
+        await loadAllData()
+        ElMessage.success('数据已刷新')
+      } catch (error) {
+        ElMessage.error('刷新数据失败')
+      }
+    }
+
+    const applyFilter = async () => {
+      try {
+        await loadRealTimeData()
+        ElMessage.success('筛选条件已应用')
+      } catch (error) {
+        ElMessage.error('筛选失败')
+      }
     }
 
     const resetFilter = () => {
       filterForm.device = ''
       filterForm.tags = []
       filterForm.timeRange = []
+      loadRealTimeData()
     }
 
-    const exportData = () => {
-      console.log('导出数据')
+    const exportData = async () => {
+      try {
+        const query = {
+          device: filterForm.device,
+          measurements: filterForm.tags,
+          start_time: filterForm.timeRange[0],
+          end_time: filterForm.timeRange[1]
+        }
+        
+        const response = await dataApi.exportData(query, 'csv')
+        
+        // 创建下载链接
+        const blob = new Blob([response], { type: 'text/csv' })
+        const url = window.URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = url
+        link.download = `iot_data_${new Date().toISOString().slice(0, 10)}.csv`
+        link.click()
+        window.URL.revokeObjectURL(url)
+        
+        ElMessage.success('数据导出成功')
+      } catch (error) {
+        console.error('Failed to export data:', error)
+        ElMessage.error('数据导出失败')
+      }
     }
+
+    // 监听设备变化，更新标签列表
+    const handleDeviceChange = () => {
+      filterForm.tags = []
+      if (filterForm.device) {
+        loadTagList()
+      }
+    }
+
+    onMounted(() => {
+      loadAllData()
+      // 设置定时刷新
+      refreshTimer = setInterval(() => {
+        loadDataStats()
+        loadDatabaseStatus()
+        if (filterForm.tags.length > 0) {
+          loadRealTimeData()
+        }
+      }, 30000) // 每30秒刷新数据
+    })
+
+    onUnmounted(() => {
+      if (refreshTimer) {
+        clearInterval(refreshTimer)
+      }
+    })
 
     return {
       deviceStats,
       dataStats,
       databaseStatus,
-      filterForm,
+      deviceList,
+      tagList,
       dataList,
+      filterForm,
       refreshData,
-      fetchDatabaseStatus,
       applyFilter,
       resetFilter,
-      exportData
+      exportData,
+      handleDeviceChange
     }
   }
 }

@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  mock-modbus:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.modbus
+    container_name: mock-modbus-tcp
+    ports:
+      - "502:502"
+    environment:
+      - DEVICE_ID=modbus_tcp_001
+      - DEVICE_HOST=0.0.0.0
+      - DEVICE_PORT=502
+      - UPDATE_INTERVAL=1.0
+      - UNIT_ID=1
+    volumes:
+      - ./modbus/modbus_config.json:/app/config.json:ro
+    restart: unless-stopped
+    networks:
+      - mock-devices
+
+  mock-opcua:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.opcua
+    container_name: mock-opcua-server
+    ports:
+      - "4840:4840"
+    environment:
+      - DEVICE_ID=opcua_device_001
+      - DEVICE_HOST=0.0.0.0
+      - DEVICE_PORT=4840
+      - UPDATE_INTERVAL=1.0
+      - NAMESPACE=http://mock.iot.device/opcua001
+    volumes:
+      - ./opcua/opcua_config.json:/app/config.json:ro
+    restart: unless-stopped
+    networks:
+      - mock-devices
+
+  mock-plc:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.plc
+    container_name: mock-mitsubishi-plc
+    ports:
+      - "5001:5001"
+    environment:
+      - DEVICE_ID=mitsubishi_plc_001
+      - DEVICE_HOST=0.0.0.0
+      - DEVICE_PORT=5001
+      - UPDATE_INTERVAL=1.0
+      - PLC_TYPE=FX3U
+      - STATION_NUMBER=255
+    volumes:
+      - ./mitsubishi/plc_config.json:/app/config.json:ro
+    restart: unless-stopped
+    networks:
+      - mock-devices
+
+  device-manager:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.manager
+    container_name: mock-device-manager
+    ports:
+      - "8080:8080"
+    environment:
+      - MANAGER_PORT=8080
+      - MANAGER_HOST=0.0.0.0
+    volumes:
+      - ./device_manager_config.json:/app/config.json:ro
+    depends_on:
+      - mock-modbus
+      - mock-opcua
+      - mock-plc
+    restart: unless-stopped
+    networks:
+      - mock-devices
+
+networks:
+  mock-devices:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  mock-devices-data: 

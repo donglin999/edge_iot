@@ -1,0 +1,32 @@
+{
+  "source_ip": "192.168.1.100",
+  "source_port": 502,
+  "source_slave_addr": 1,
+  "fs": 1,
+  "addresses": [
+    {
+      "name": "温度",
+      "address": "40001",
+      "data_type": "float",
+      "description": "设备温度传感器"
+    },
+    {
+      "name": "压力",
+      "address": "40002",
+      "data_type": "float",
+      "description": "设备压力传感器"
+    },
+    {
+      "name": "流量",
+      "address": "40003",
+      "data_type": "float",
+      "description": "设备流量传感器"
+    }
+  ],
+  "influxdb": {
+    "url": "http://localhost:8086",
+    "token": "iot-token-12345",
+    "org": "iot-org",
+    "bucket": "iot-data"
+  }
+}

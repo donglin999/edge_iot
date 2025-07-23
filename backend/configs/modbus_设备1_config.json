@@ -1,0 +1,34 @@
+{
+  "device": {
+    "name": "设备1",
+    "protocol": "modbus_tcp",
+    "connection": {
+      "host": "192.168.1.100",
+      "port": 502
+    },
+    "points": [
+      {
+        "name": "温度",
+        "address": "40001",
+        "data_type": "float"
+      },
+      {
+        "name": "压力",
+        "address": "40002",
+        "data_type": "float"
+      },
+      {
+        "name": "流量",
+        "address": "40003",
+        "data_type": "float"
+      }
+    ],
+    "interval": 1000
+  },
+  "influxdb": {
+    "url": "http://localhost:8086",
+    "token": "iot-token-12345",
+    "org": "iot-org",
+    "bucket": "iot-data"
+  }
+}

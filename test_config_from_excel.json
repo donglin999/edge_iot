@@ -1,0 +1,144 @@
+{
+  "test_name": "数据地址清单完整流程测试",
+  "test_description": "基于Excel数据地址清单的完整IoT数采系统测试",
+  "devices": [
+    {
+      "device_type": "modbus_tcp",
+      "device_id": "haitian_injection_machine_01",
+      "device_name": "海天注塑机",
+      "ip": "127.0.0.1",
+      "port": 4196,
+      "unit_id": 1,
+      "data_points": [
+        {
+          "name": "设备状态",
+          "address": 40047,
+          "type": "INT16",
+          "unit": "无",
+          "tag": "device_status"
+        },
+        {
+          "name": "产量",
+          "address": 40069,
+          "type": "INT32",
+          "unit": "模",
+          "tag": "output"
+        },
+        {
+          "name": "输出压力",
+          "address": 40001,
+          "type": "INT16",
+          "unit": "Bar",
+          "tag": "output_pressure"
+        },
+        {
+          "name": "输出速度",
+          "address": 40002,
+          "type": "INT16",
+          "unit": "%",
+          "tag": "output_speed"
+        },
+        {
+          "name": "输出背压",
+          "address": 40003,
+          "type": "INT16",
+          "unit": "Bar",
+          "tag": "output_back_pressure"
+        },
+        {
+          "name": "循环周期",
+          "address": 40004,
+          "type": "INT32",
+          "unit": "0.01S",
+          "tag": "cycle_time"
+        },
+        {
+          "name": "动作计时",
+          "address": 40006,
+          "type": "INT16",
+          "unit": "0.01S",
+          "tag": "action_timing"
+        },
+        {
+          "name": "射出位置",
+          "address": 40007,
+          "type": "INT16",
+          "unit": "0.1mm",
+          "tag": "injection_position"
+        },
+        {
+          "name": "推力座位置",
+          "address": 40008,
+          "type": "INT16",
+          "unit": "0.1mm",
+          "tag": "platen_position"
+        },
+        {
+          "name": "顶针位置",
+          "address": 40009,
+          "type": "INT16",
+          "unit": "0.1mm",
+          "tag": "ejector_position"
+        }
+      ]
+    },
+    {
+      "device_type": "opcua",
+      "device_id": "haitian_injection_machine_36",
+      "device_name": "海天注塑机36#",
+      "endpoint": "opc.tcp://127.0.0.1:4840/freeopcua/server/",
+      "namespace": "http://mock.iot.device/opcua001",
+      "data_points": [
+        {
+          "name": "温度",
+          "node_id": "Temperature",
+          "type": "Double",
+          "unit": "°C",
+          "tag": "temperature"
+        },
+        {
+          "name": "压力",
+          "node_id": "Pressure",
+          "type": "Double",
+          "unit": "Bar",
+          "tag": "pressure"
+        },
+        {
+          "name": "流量",
+          "node_id": "FlowRate",
+          "type": "Double",
+          "unit": "L/min",
+          "tag": "flow_rate"
+        },
+        {
+          "name": "系统状态",
+          "node_id": "SystemStatus",
+          "type": "Boolean",
+          "unit": "无",
+          "tag": "system_status"
+        },
+        {
+          "name": "生产计数",
+          "node_id": "ProductionCounter",
+          "type": "Int32",
+          "unit": "个",
+          "tag": "production_count"
+        }
+      ]
+    }
+  ],
+  "test_parameters": {
+    "test_duration": "300",
+    "sampling_rate": "1000",
+    "data_validation": true,
+    "performance_monitoring": true,
+    "error_handling_test": true
+  },
+  "expected_results": {
+    "total_data_points": 15,
+    "devices_count": 2,
+    "protocols": ["modbus_tcp", "opcua"],
+    "min_sampling_rate": 1,
+    "max_data_loss": 0.01
+  }
+} 

@@ -1,0 +1,31 @@
+{
+  "source_ip": "192.168.1.101",
+  "source_port": 4840,
+  "fs": 1,
+  "addresses": [
+    {
+      "name": "节点1",
+      "node_id": "ns=2;i=1001",
+      "data_type": "float",
+      "description": "OPC UA节点1"
+    },
+    {
+      "name": "节点2",
+      "node_id": "ns=2;i=1002",
+      "data_type": "float",
+      "description": "OPC UA节点2"
+    },
+    {
+      "name": "节点3",
+      "node_id": "ns=2;i=1003",
+      "data_type": "float",
+      "description": "OPC UA节点3"
+    }
+  ],
+  "influxdb": {
+    "url": "http://localhost:8086",
+    "token": "iot-token-12345",
+    "org": "iot-org",
+    "bucket": "iot-data"
+  }
+}
