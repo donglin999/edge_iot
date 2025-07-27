@@ -251,8 +251,7 @@ export default {
           cancelButtonText: '取消',
           type: 'info'
         })
-        
-        await processApi.startProcesses()
+        await processApi.startProcesses([])
         await loadProcesses()
         ElMessage.success('所有进程启动成功')
       } catch (error) {
@@ -270,8 +269,7 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         })
-        
-        await processApi.stopProcesses()
+        await processApi.stopProcesses([])
         await loadProcesses()
         ElMessage.success('所有进程停止成功')
       } catch (error) {
@@ -289,8 +287,7 @@ export default {
           cancelButtonText: '取消',
           type: 'info'
         })
-        
-        await processApi.restartProcesses()
+        await processApi.restartProcesses([])
         await loadProcesses()
         ElMessage.success('所有进程重启成功')
       } catch (error) {
@@ -319,7 +316,7 @@ export default {
         ElMessage.success(`进程 ${process.name} 停止成功`)
       } catch (error) {
         console.error('Failed to stop process:', error)
-        ElMessage.error(`进程 ${process.name} 停止失败`)
+        ElMessage.error(`停止进程 ${process.name} 停止失败`)
       }
     }
 

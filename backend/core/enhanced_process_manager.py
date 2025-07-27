@@ -20,7 +20,7 @@ import concurrent.futures
 # 添加项目根目录到Python路径
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 from logs.log_config import get_logger
-from models.process_models import ProcessState, EnhancedProcessInfo, ConnectionInfo, ConnectionStatus, PerformanceMetrics, HealthStatus
+from backend.models.process_models import ProcessState, EnhancedProcessInfo, ConnectionInfo, ConnectionStatus, PerformanceMetrics, HealthStatus
 from core.connection_monitor import connection_monitor, ConnectionCheckResult
 from core.data_acquisition_monitor import data_acquisition_monitor, DataFlowStatus, DataAcquisitionAlert
 
@@ -299,6 +299,7 @@ class EnhancedProcessManager:
             cwd = os.getcwd()
             self.logger.info(f"当前工作目录: {cwd}")
             
+            # 检查是否是数据采集进程，需要特殊处理
             if process_name in ["modbus_collector_设备1", "opcua_collector_设备2", "melsoft_collector_plc设备"]:
                 # 查找数据采集后端目录
                 backend_path = os.path.join(os.path.dirname(os.getcwd()), "project-data-acquisition")
@@ -315,7 +316,6 @@ class EnhancedProcessManager:
                         self.logger.info(f"使用数据采集目录: {cwd}")
                     else:
                         self.logger.warning(f"数据采集后端目录未找到，使用当前目录: {cwd}")
-                        # 继续使用当前目录，但这可能导致启动失败
             
             # 设置环境变量
             env = os.environ.copy()
@@ -351,12 +351,15 @@ class EnhancedProcessManager:
             
             env["PYTHONPATH"] = os.pathsep.join(python_path_list)
             
+            # 创建单个进程启动命令，而不是启动所有进程
+            command = self._create_single_process_command(process_name, process_info)
+            
             self.logger.info(f"设置PYTHONPATH: {env['PYTHONPATH']}")
-            self.logger.info(f"启动命令: {' '.join(process_info.command)}")
+            self.logger.info(f"启动命令: {' '.join(command)}")
             
             # 启动子进程
             proc = subprocess.Popen(
-                process_info.command,
+                command,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
@@ -409,6 +412,106 @@ class EnhancedProcessManager:
             
             self.logger.error(f"启动进程 {process_name} 时发生异常: {e}")
             return False
+
+    def _create_single_process_command(self, process_name: str, process_info: EnhancedProcessInfo) -> List[str]:
+        """创建单个进程启动命令，避免启动所有进程"""
+        try:
+            # 根据进程类型创建特定的启动命令
+            if process_name == "modbus_collector_设备1":
+                return [
+                    "python", "-c",
+                    f"""
+import sys
+import os
+sys.path.insert(0, os.getcwd())
+
+from apps.collector.modbustcp_influx import ModbustcpInflux
+import json
+
+# 加载配置文件
+config_path = '{process_info.config_file}'
+if os.path.exists(config_path):
+    with open(config_path, 'r', encoding='utf-8') as f:
+        config = json.load(f)
+else:
+    # 使用默认配置
+    config = {{
+        "device_ip": "192.168.1.100",
+        "device_port": 502,
+        "protocol": "modbus"
+    }}
+
+# 启动单个Modbus采集器
+collector = ModbustcpInflux(config)
+collector.modbustcp_influx()
+"""
+                ]
+            elif process_name == "opcua_collector_设备2":
+                return [
+                    "python", "-c",
+                    f"""
+import sys
+import os
+sys.path.insert(0, os.getcwd())
+
+from apps.collector.opcua_influx import OpcuaInflux
+import json
+
+# 加载配置文件
+config_path = '{process_info.config_file}'
+if os.path.exists(config_path):
+    with open(config_path, 'r', encoding='utf-8') as f:
+        config = json.load(f)
+else:
+    # 使用默认配置
+    config = {{
+        "device_ip": "192.168.1.101",
+        "device_port": 4840,
+        "protocol": "opcua"
+    }}
+
+# 启动单个OPC UA采集器
+collector = OpcuaInflux(config)
+collector.start_collector()
+"""
+                ]
+            elif process_name == "melsoft_collector_plc设备":
+                return [
+                    "python", "-c",
+                    f"""
+import sys
+import os
+sys.path.insert(0, os.getcwd())
+
+from apps.collector.melseca1enet_influx import MelsecA1ENetInflux
+import json
+
+# 加载配置文件
+config_path = '{process_info.config_file}'
+if os.path.exists(config_path):
+    with open(config_path, 'r', encoding='utf-8') as f:
+        config = json.load(f)
+else:
+    # 使用默认配置
+    config = {{
+        "device_ip": "192.168.1.102",
+        "device_port": 5007,
+        "protocol": "melsoft"
+    }}
+
+# 启动单个Melsoft采集器
+collector = MelsecA1ENetInflux(config)
+collector.melseca1enet_influx()
+"""
+                ]
+            else:
+                # 对于其他进程，使用原始命令
+                return process_info.command
+                
+        except Exception as e:
+            self.logger.error(f"创建进程命令失败: {e}")
+            # 返回原始命令作为后备
+            return process_info.command
     
     def stop_process(self, process_name: str) -> bool:
         """停止指定进程"""

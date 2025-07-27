@@ -7,7 +7,7 @@ export default {
   },
   
   // Start processes
-  async startProcesses(processNames = null) {
+  async startProcesses(processNames = []) {
     return await api.post('/api/processes/start', {
       action: 'start',
       process_names: processNames
@@ -15,7 +15,7 @@ export default {
   },
   
   // Stop processes
-  async stopProcesses(processNames = null) {
+  async stopProcesses(processNames = []) {
     return await api.post('/api/processes/stop', {
       action: 'stop',
       process_names: processNames
@@ -23,7 +23,7 @@ export default {
   },
   
   // Restart processes
-  async restartProcesses(processNames = null) {
+  async restartProcesses(processNames = []) {
     return await api.post('/api/processes/restart', {
       action: 'restart',
       process_names: processNames

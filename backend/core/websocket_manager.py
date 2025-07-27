@@ -21,7 +21,8 @@ from models.process_models import (
     HealthStatus, 
     ConnectionStatus,
     ProcessState,
-    PerformanceMetrics
+    PerformanceMetrics,
+    ConnectionInfo
 )
 
 logger = logging.getLogger(__name__)

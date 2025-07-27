@@ -435,10 +435,23 @@ class ModbusTCPServer(BaseDeviceServer):
 
 def main():
     """主函数 - 用于直接运行服务器"""
-    config = {
+    # 尝试从配置文件加载配置
+    config_file = 'modbus_config.json'
+    if os.path.exists(config_file):
+        try:
+            with open(config_file, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+        except Exception as e:
+            print(f"加载配置文件失败: {e}")
+            config = {}
+    else:
+        config = {}
+    
+    # 设置默认配置
+    default_config = {
         'device_id': 'modbus_tcp_001',
         'host': '0.0.0.0',
-        'port': 502,
+        'port': 502,  # 使用标准Modbus端口
         'unit_id': 1,
         'update_interval': 1.0,
         'coil_count': 100,
@@ -472,7 +485,11 @@ def main():
         }
     }
     
-    server = ModbusTCPServer(config)
+    # 合并配置：配置文件优先，默认配置作为后备
+    final_config = default_config.copy()
+    final_config.update(config)
+    
+    server = ModbusTCPServer(final_config)
     
     try:
         print("启动Modbus TCP模拟设备服务器...")

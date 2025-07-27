@@ -11,7 +11,7 @@ from pathlib import Path
 class LogConfig:
     """日志配置类"""
     
-    def __init__(self, base_dir="/mnt/c/Users/dongl/Documents/GitHub/edge_iot"):
+    def __init__(self, base_dir="./edge_iot"):
         self.base_dir = Path(base_dir)
         self.logs_dir = self.base_dir / "logs"
         self.ensure_log_dirs()

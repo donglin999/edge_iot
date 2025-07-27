@@ -1,0 +1,787 @@
+2025-07-24 15:33:06 - backend.core.enhanced_process_manager - INFO - _init_database:126 - 数据库初始化完成
+2025-07-24 15:33:06 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 15:33:06 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 15:33:06 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 15:33:06 - backend.core.enhanced_process_manager - INFO - start_monitoring:547 - 进程监控已启动
+2025-07-24 15:33:46 - backend.core.enhanced_process_manager - INFO - _init_database:126 - 数据库初始化完成
+2025-07-24 15:33:46 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 15:33:46 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 15:33:46 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 15:33:46 - backend.core.enhanced_process_manager - INFO - start_monitoring:547 - 进程监控已启动
+2025-07-24 15:33:59 - backend.core.enhanced_process_manager - INFO - _init_database:126 - 数据库初始化完成
+2025-07-24 15:33:59 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 15:33:59 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 15:33:59 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 15:33:59 - backend.core.enhanced_process_manager - INFO - start_monitoring:547 - 进程监控已启动
+2025-07-24 15:35:50 - backend.core.enhanced_process_manager - INFO - _init_database:126 - 数据库初始化完成
+2025-07-24 15:35:50 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 15:35:50 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 15:35:50 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 15:35:50 - backend.core.enhanced_process_manager - INFO - start_monitoring:547 - 进程监控已启动
+2025-07-24 15:36:57 - backend.core.enhanced_process_manager - INFO - _init_database:126 - 数据库初始化完成
+2025-07-24 15:36:57 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 15:36:57 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 15:36:57 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 15:36:57 - backend.core.enhanced_process_manager - INFO - start_monitoring:547 - 进程监控已启动
+2025-07-24 15:40:10 - backend.core.enhanced_process_manager - INFO - _init_database:126 - 数据库初始化完成
+2025-07-24 15:40:10 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 15:40:10 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 15:40:10 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 15:40:10 - backend.core.enhanced_process_manager - INFO - start_monitoring:547 - 进程监控已启动
+2025-07-24 15:41:04 - backend.core.enhanced_process_manager - INFO - shutdown:1461 - 正在关闭进程管理器...
+2025-07-24 15:41:06 - backend.core.enhanced_process_manager - INFO - stop_monitoring:554 - 进程监控已停止
+2025-07-24 15:41:06 - backend.core.enhanced_process_manager - INFO - shutdown:1470 - 进程管理器已关闭
+2025-07-24 15:43:22 - backend.core.enhanced_process_manager - INFO - _init_database:126 - 数据库初始化完成
+2025-07-24 15:43:22 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 15:43:22 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 15:43:22 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 15:43:22 - backend.core.enhanced_process_manager - INFO - start_monitoring:547 - 进程监控已启动
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - INFO - reload_config:260 - 重新加载进程配置...
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:03:12 - backend.core.enhanced_process_manager - ERROR - start_process:410 - 启动进程 test_process_1 时发生异常: [Errno 2] No such file or directory: 'python'
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - INFO - reload_config:260 - 重新加载进程配置...
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_2
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:03:14 - backend.core.enhanced_process_manager - ERROR - start_process:410 - 启动进程 test_process_2 时发生异常: [Errno 2] No such file or directory: 'python'
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - INFO - reload_config:260 - 重新加载进程配置...
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:03:19 - backend.core.enhanced_process_manager - ERROR - start_process:410 - 启动进程 test_process_1 时发生异常: [Errno 2] No such file or directory: 'python'
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - INFO - reload_config:260 - 重新加载进程配置...
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:05:15 - backend.core.enhanced_process_manager - ERROR - start_process:410 - 启动进程 test_process_1 时发生异常: [Errno 2] No such file or directory: 'python'
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - reload_config:260 - 重新加载进程配置...
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:10:36 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3461550
+2025-07-24 16:10:38 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3461550
+2025-07-24 16:10:39 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3461550)
+2025-07-24 16:10:40 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:10:40 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: unknown
+2025-07-24 16:10:40 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接状态未知
+2025-07-24 16:10:40 - backend.core.enhanced_process_manager - INFO - _register_connection_monitoring:588 - 注册连接监控: test_process_1 -> 192.168.1.100:502
+2025-07-24 16:10:41 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:10:41 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: unknown
+2025-07-24 16:10:41 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接状态未知
+2025-07-24 16:10:41 - backend.core.enhanced_process_manager - INFO - _register_connection_monitoring:588 - 注册连接监控: test_process_2 -> 192.168.1.101:4840
+2025-07-24 16:10:47 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:10:52 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:10:52 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开
+2025-07-24 16:10:54 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:10:59 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:10:59 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开
+2025-07-24 16:11:01 - backend.core.enhanced_process_manager - INFO - stop_process:452 - 进程 test_process_1 已停止
+2025-07-24 16:11:04 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3461550): process PID not found (pid=3461550)
+2025-07-24 16:11:04 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 16:11:04 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 16:11:09 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:11:09 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 3次
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - reload_config:260 - 重新加载进程配置...
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:18:53 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3468983
+2025-07-24 16:18:55 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3468983
+2025-07-24 16:18:57 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3468983)
+2025-07-24 16:18:58 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:19:03 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:19:03 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开
+2025-07-24 16:19:04 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:19:09 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:19:09 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开
+2025-07-24 16:19:15 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:19:20 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:19:20 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开
+2025-07-24 16:19:21 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:19:26 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:19:26 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开
+2025-07-24 16:19:32 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:19:37 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:19:37 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 有连接错误记录: 3次
+2025-07-24 16:19:38 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:19:43 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:19:43 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 3次
+2025-07-24 16:19:49 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:19:54 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:19:54 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 有连接错误记录: 4次
+2025-07-24 16:19:55 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:20:00 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:20:00 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 4次
+2025-07-24 16:20:06 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:20:06 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 16:20:06 - backend.core.enhanced_process_manager - INFO - _handle_process_crashed:1226 - 尝试自动重启进程 test_process_1 (第1次)
+2025-07-24 16:20:13 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:20:13 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:20:13 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:20:13 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:20:13 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:20:13 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:20:13 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3470466
+2025-07-24 16:20:15 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3470466
+2025-07-24 16:20:15 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3468983): process PID not found (pid=3468983)
+2025-07-24 16:20:15 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 16:20:15 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 16:20:20 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:20:20 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 5次
+2025-07-24 16:20:25 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3470466)
+2025-07-24 16:20:26 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:20:31 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:20:31 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 有连接错误记录: 5次
+2025-07-24 16:20:32 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:20:37 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:20:37 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 6次
+2025-07-24 16:20:43 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:20:48 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:20:48 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 6次
+2025-07-24 16:20:49 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:20:54 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:20:54 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 7次
+2025-07-24 16:21:00 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:21:05 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:21:05 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 7次
+2025-07-24 16:21:06 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:21:12 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:21:12 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 8次
+2025-07-24 16:21:18 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:21:18 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 16:21:18 - backend.core.enhanced_process_manager - INFO - _handle_process_crashed:1226 - 尝试自动重启进程 test_process_1 (第2次)
+2025-07-24 16:21:25 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:21:25 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:21:25 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:21:25 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:21:25 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:21:25 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:21:25 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3471880
+2025-07-24 16:21:27 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3471880
+2025-07-24 16:21:27 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3470466): process PID not found (pid=3470466)
+2025-07-24 16:21:27 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 16:21:27 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 16:21:32 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:21:32 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 9次
+2025-07-24 16:21:37 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3471880)
+2025-07-24 16:21:38 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:21:43 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:21:43 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次, 设备连接断开, 连接错误次数过多: 8次
+2025-07-24 16:21:44 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:21:49 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:21:49 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 10次
+2025-07-24 16:21:55 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:22:00 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:22:00 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次, 设备连接断开, 连接错误次数过多: 9次
+2025-07-24 16:22:01 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:22:06 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:22:06 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 11次
+2025-07-24 16:22:12 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:22:17 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:22:17 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次, 设备连接断开, 连接错误次数过多: 10次
+2025-07-24 16:22:18 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:22:23 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:22:23 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 12次
+2025-07-24 16:22:29 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:22:29 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 16:22:29 - backend.core.enhanced_process_manager - INFO - _handle_process_crashed:1226 - 尝试自动重启进程 test_process_1 (第3次)
+2025-07-24 16:22:36 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:22:36 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:22:36 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:22:36 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:22:36 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:22:36 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:22:36 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3473510
+2025-07-24 16:22:38 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3473510
+2025-07-24 16:22:38 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3471880): process PID not found (pid=3471880)
+2025-07-24 16:22:38 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 16:22:38 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 16:22:43 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:22:43 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 13次
+2025-07-24 16:22:48 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3473510)
+2025-07-24 16:22:49 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:22:54 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:22:54 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次, 设备连接断开, 连接错误次数过多: 11次
+2025-07-24 16:22:55 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:23:00 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:23:00 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 14次
+2025-07-24 16:23:06 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:23:11 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:23:11 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次, 设备连接断开, 连接错误次数过多: 12次
+2025-07-24 16:23:12 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:23:17 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:23:17 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 15次
+2025-07-24 16:23:23 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:23:28 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:23:28 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次, 设备连接断开, 连接错误次数过多: 13次
+2025-07-24 16:23:29 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:23:34 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:23:34 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 16次
+2025-07-24 16:23:40 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:23:40 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 16:23:40 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_1 达到最大重启次数或禁用自动重启
+2025-07-24 16:23:40 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3473510): process PID not found (pid=3473510)
+2025-07-24 16:23:40 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 16:23:40 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 16:23:45 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:23:45 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 17次
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - reload_config:260 - 重新加载进程配置...
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3476076
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_1 (PID: 3476076)
+2025-07-24 16:24:00 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3476076)
+2025-07-24 16:24:01 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:24:02 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3476076
+2025-07-24 16:24:06 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:24:06 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开
+2025-07-24 16:24:07 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:24:12 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:24:12 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开
+2025-07-24 16:24:18 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:24:23 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:24:23 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开
+2025-07-24 16:24:24 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:24:29 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:24:29 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开
+2025-07-24 16:24:32 - backend.core.enhanced_process_manager - INFO - stop_process:452 - 进程 test_process_1 已停止
+2025-07-24 16:24:34 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3476076): process PID not found (pid=3476076)
+2025-07-24 16:24:34 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 16:24:34 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 3次
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - reload_config:260 - 重新加载进程配置...
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:24:39 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3477159
+2025-07-24 16:24:41 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3477159
+2025-07-24 16:24:44 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3477159)
+2025-07-24 16:24:45 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:24:50 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:24:50 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开
+2025-07-24 16:24:51 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:24:53 - backend.core.enhanced_process_manager - INFO - stop_process:452 - 进程 test_process_2 已停止
+2025-07-24 16:24:56 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:24:56 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开
+2025-07-24 16:25:01 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3477159)
+2025-07-24 16:25:02 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:25:07 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:25:07 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开
+2025-07-24 16:25:08 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:25:13 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:25:13 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开
+2025-07-24 16:25:19 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:25:24 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:25:24 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 有连接错误记录: 3次
+2025-07-24 16:25:25 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:25:30 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:25:30 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 3次
+2025-07-24 16:25:36 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:25:41 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:25:41 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 有连接错误记录: 4次
+2025-07-24 16:25:42 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:25:47 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:25:47 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 4次
+2025-07-24 16:25:54 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:25:54 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 16:25:54 - backend.core.enhanced_process_manager - INFO - _handle_process_crashed:1226 - 尝试自动重启进程 test_process_1 (第1次)
+2025-07-24 16:26:01 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:26:01 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:26:01 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:26:01 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:26:01 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:26:01 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:26:01 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3479308
+2025-07-24 16:26:02 - backend.core.enhanced_process_manager - INFO - stop_process:452 - 进程 test_process_2 已停止
+2025-07-24 16:26:03 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3479308
+2025-07-24 16:26:08 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3479308)
+2025-07-24 16:26:09 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:26:14 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:26:14 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 有连接错误记录: 5次
+2025-07-24 16:26:15 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:26:20 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:26:20 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 5次
+2025-07-24 16:26:26 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:26:31 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:26:31 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 6次
+2025-07-24 16:26:32 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:26:37 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:26:37 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 6次
+2025-07-24 16:26:43 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:26:48 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:26:48 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 7次
+2025-07-24 16:26:49 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:26:54 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:26:54 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 7次
+2025-07-24 16:27:00 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:27:05 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:27:05 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 8次
+2025-07-24 16:27:06 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:27:11 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:27:11 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 8次
+2025-07-24 16:27:17 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:27:17 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 16:27:17 - backend.core.enhanced_process_manager - INFO - _handle_process_crashed:1226 - 尝试自动重启进程 test_process_1 (第2次)
+2025-07-24 16:27:24 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:27:24 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:27:24 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:27:24 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:27:24 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:27:24 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:27:24 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3481534
+2025-07-24 16:27:26 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3481534
+2025-07-24 16:27:26 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3479308): process PID not found (pid=3479308)
+2025-07-24 16:27:26 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 16:27:26 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 16:27:31 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:27:31 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 9次
+2025-07-24 16:27:36 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3481534)
+2025-07-24 16:27:37 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:27:42 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:27:42 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次, 设备连接断开, 连接错误次数过多: 9次
+2025-07-24 16:27:43 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:27:48 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:27:48 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 10次
+2025-07-24 16:27:54 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:27:59 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:27:59 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次, 设备连接断开, 连接错误次数过多: 10次
+2025-07-24 16:28:00 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:28:05 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:28:05 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 11次
+2025-07-24 16:28:11 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:28:16 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:28:16 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次, 设备连接断开, 连接错误次数过多: 11次
+2025-07-24 16:28:17 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 16:28:22 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:28:22 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 12次
+2025-07-24 16:28:28 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:28:28 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 16:28:28 - backend.core.enhanced_process_manager - INFO - _handle_process_crashed:1226 - 尝试自动重启进程 test_process_1 (第3次)
+2025-07-24 16:28:35 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 16:28:35 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 16:28:35 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 16:28:35 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:28:35 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 16:28:35 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 16:28:35 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3483452
+2025-07-24 16:28:37 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3483452
+2025-07-24 16:28:37 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3481534): process PID not found (pid=3481534)
+2025-07-24 16:28:37 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 16:28:37 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 16:28:42 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:28:42 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 13次
+2025-07-24 16:28:47 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3483452)
+2025-07-24 16:28:48 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:28:53 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:28:53 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次, 设备连接断开, 连接错误次数过多: 12次
+2025-07-24 16:28:54 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:28:59 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:28:59 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 14次
+2025-07-24 16:29:05 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:29:10 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:29:10 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次, 设备连接断开, 连接错误次数过多: 13次
+2025-07-24 16:29:11 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:29:16 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:29:16 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 15次
+2025-07-24 16:29:22 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:29:27 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 16:29:27 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次, 设备连接断开, 连接错误次数过多: 14次
+2025-07-24 16:29:28 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 16:29:33 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:29:33 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 16次
+2025-07-24 16:29:39 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 16:29:39 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 16:29:39 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_1 达到最大重启次数或禁用自动重启
+2025-07-24 16:29:39 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3483452): process PID not found (pid=3483452)
+2025-07-24 16:29:39 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 16:29:39 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 16:29:44 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 16:29:44 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 17次
+2025-07-24 17:24:51 - backend.core.enhanced_process_manager - INFO - _init_database:126 - 数据库初始化完成
+2025-07-24 17:24:51 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 17:24:51 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 17:24:51 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 17:24:51 - backend.core.enhanced_process_manager - INFO - start_monitoring:547 - 进程监控已启动
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - reload_config:260 - 重新加载进程配置...
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 17:26:55 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3551979
+2025-07-24 17:26:57 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3551979
+2025-07-24 17:26:57 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3551979)
+2025-07-24 17:26:58 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:26:58 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: unknown
+2025-07-24 17:26:58 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接状态未知
+2025-07-24 17:26:58 - backend.core.enhanced_process_manager - INFO - _register_connection_monitoring:588 - 注册连接监控: test_process_1 -> 127.0.0.1:502
+2025-07-24 17:26:59 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:26:59 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: unknown
+2025-07-24 17:26:59 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接状态未知
+2025-07-24 17:26:59 - backend.core.enhanced_process_manager - INFO - _register_connection_monitoring:588 - 注册连接监控: test_process_2 -> 127.0.0.1:4840
+2025-07-24 17:27:05 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:05 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 17:27:05 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开
+2025-07-24 17:27:06 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:06 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:27:06 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开
+2025-07-24 17:27:12 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:12 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 17:27:12 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 有连接错误记录: 3次
+2025-07-24 17:27:13 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:13 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:27:13 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 3次
+2025-07-24 17:27:19 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:19 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 17:27:19 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 有连接错误记录: 4次
+2025-07-24 17:27:20 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:20 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:27:20 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 4次
+2025-07-24 17:27:26 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:26 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 17:27:26 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 有连接错误记录: 5次
+2025-07-24 17:27:27 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:27 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:27:27 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 有连接错误记录: 5次
+2025-07-24 17:27:33 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:33 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 17:27:33 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 6次
+2025-07-24 17:27:34 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:34 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:27:34 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 6次
+2025-07-24 17:27:40 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:40 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 17:27:40 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 7次
+2025-07-24 17:27:41 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:41 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:27:41 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 7次
+2025-07-24 17:27:47 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:47 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 17:27:47 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 8次
+2025-07-24 17:27:48 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:48 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:27:48 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 8次
+2025-07-24 17:27:54 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:27:54 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 17:27:54 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 9次
+2025-07-24 17:27:55 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 17:27:55 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:27:55 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 9次
+2025-07-24 17:28:01 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 17:28:01 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 17:28:01 - backend.core.enhanced_process_manager - INFO - _handle_process_crashed:1226 - 尝试自动重启进程 test_process_1 (第1次)
+2025-07-24 17:28:08 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 17:28:08 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 17:28:08 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 17:28:08 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:28:08 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:28:08 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 17:28:08 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3553179
+2025-07-24 17:28:10 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3553179
+2025-07-24 17:28:10 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3551979): process PID not found (pid=3551979)
+2025-07-24 17:28:10 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 17:28:10 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 17:28:10 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:28:10 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 10次
+2025-07-24 17:28:15 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3553179)
+2025-07-24 17:28:16 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:28:16 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 17:28:16 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 10次
+2025-07-24 17:28:17 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:28:18 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:28:18 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 11次
+2025-07-24 17:28:24 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:28:24 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: disconnected
+2025-07-24 17:28:24 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 设备连接断开, 连接错误次数过多: 11次
+2025-07-24 17:28:25 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:28:25 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: disconnected
+2025-07-24 17:28:25 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 设备连接断开, 连接错误次数过多: 12次
+2025-07-24 17:28:31 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:28:31 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:28:31 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 连接错误次数过多: 11次
+2025-07-24 17:28:32 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:28:32 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:28:32 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 连接错误次数过多: 12次
+2025-07-24 17:28:38 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:28:38 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:28:38 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 连接错误次数过多: 11次
+2025-07-24 17:28:39 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:28:39 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:28:39 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 连接错误次数过多: 12次
+2025-07-24 17:28:43 - backend.core.enhanced_process_manager - INFO - stop_process:452 - 进程 test_process_1 已停止
+2025-07-24 17:28:44 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3553179): process PID not found (pid=3553179)
+2025-07-24 17:28:44 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 17:28:44 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 17:28:44 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:28:44 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_2 健康问题: 连接错误次数过多: 12次
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - reload_config:260 - 重新加载进程配置...
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - load_process_configs:145 - 尝试配置文件路径: backend/configs/process_config.json
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - load_process_configs:148 - 找到配置文件: backend/configs/process_config.json
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - load_process_configs:179 - 加载了 2 个进程配置
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 17:28:51 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3554171
+2025-07-24 17:28:53 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3554171
+2025-07-24 17:28:54 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3554171)
+2025-07-24 17:28:55 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:28:55 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:28:56 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:28:56 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:29:02 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:02 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:29:03 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:03 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:29:09 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:09 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:29:10 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:10 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:29:16 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:16 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:29:17 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:17 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:29:23 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:23 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:29:24 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:24 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:29:30 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:30 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:29:31 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:31 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:29:37 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:37 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:29:38 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:38 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:29:44 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:44 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:29:45 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:29:45 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:29:51 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 17:29:51 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 17:29:51 - backend.core.enhanced_process_manager - INFO - _handle_process_crashed:1226 - 尝试自动重启进程 test_process_1 (第1次)
+2025-07-24 17:29:58 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 17:29:58 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 17:29:58 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 17:29:58 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:29:58 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:29:58 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 17:29:58 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3555676
+2025-07-24 17:30:00 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3555676
+2025-07-24 17:30:00 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3554171): process PID not found (pid=3554171)
+2025-07-24 17:30:00 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 17:30:00 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 17:30:00 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:30:05 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3555676)
+2025-07-24 17:30:06 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:06 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:30:07 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:07 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:30:13 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:13 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:30:14 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:14 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:30:20 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:20 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:30:21 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:21 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:30:27 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:27 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:30:28 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:28 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:30:34 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:34 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:30:35 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:35 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:30:41 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:41 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:30:42 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:42 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:30:48 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:48 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:30:49 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:49 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:30:55 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:55 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:30:56 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.12MB
+2025-07-24 17:30:56 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:31:02 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 17:31:02 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 17:31:02 - backend.core.enhanced_process_manager - INFO - _handle_process_crashed:1226 - 尝试自动重启进程 test_process_1 (第2次)
+2025-07-24 17:31:09 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 17:31:09 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 17:31:09 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 17:31:09 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:31:09 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:31:09 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 17:31:09 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3557242
+2025-07-24 17:31:11 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3557242
+2025-07-24 17:31:11 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3555676): process PID not found (pid=3555676)
+2025-07-24 17:31:11 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 17:31:11 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 17:31:11 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:31:17 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3557242)
+2025-07-24 17:31:18 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:18 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:31:18 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次
+2025-07-24 17:31:19 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:19 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:31:25 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:25 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:31:25 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次
+2025-07-24 17:31:26 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:26 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:31:32 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:32 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:31:32 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次
+2025-07-24 17:31:33 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:33 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:31:39 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:39 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:31:39 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次
+2025-07-24 17:31:40 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:40 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:31:46 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:46 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:31:46 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次
+2025-07-24 17:31:47 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:47 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:31:53 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:53 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:31:53 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次
+2025-07-24 17:31:54 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:31:54 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:32:00 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:00 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:32:00 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次
+2025-07-24 17:32:01 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:01 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:32:07 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:07 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:32:07 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 2次
+2025-07-24 17:32:08 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:08 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:32:14 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 17:32:14 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 17:32:14 - backend.core.enhanced_process_manager - INFO - _handle_process_crashed:1226 - 尝试自动重启进程 test_process_1 (第3次)
+2025-07-24 17:32:21 - backend.core.enhanced_process_manager - INFO - start_process:293 - 开始启动进程: test_process_1
+2025-07-24 17:32:21 - backend.core.enhanced_process_manager - INFO - start_process:300 - 当前工作目录: /home/ubuntu/xiuxiang/edge_iot/backend
+2025-07-24 17:32:21 - backend.core.enhanced_process_manager - INFO - start_process:329 - 检查用户site-packages: /home/ubuntu/.local/lib/python3.12/site-packages
+2025-07-24 17:32:21 - backend.core.enhanced_process_manager - INFO - start_process:345 - 添加系统site-packages: /home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:32:21 - backend.core.enhanced_process_manager - INFO - start_process:354 - 设置PYTHONPATH: /home/ubuntu/xiuxiang/edge_iot/backend:/home/ubuntu/xiuxiang/edge_iot/backend/venv/lib/python3.12/site-packages
+2025-07-24 17:32:21 - backend.core.enhanced_process_manager - INFO - start_process:355 - 启动命令: python -c import time; time.sleep(60)
+2025-07-24 17:32:21 - backend.core.enhanced_process_manager - INFO - start_process:369 - 子进程已启动，PID: 3558747
+2025-07-24 17:32:23 - backend.core.enhanced_process_manager - INFO - start_process:383 - 进程 test_process_1 启动成功, PID: 3558747
+2025-07-24 17:32:23 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3557242): process PID not found (pid=3557242)
+2025-07-24 17:32:23 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 17:32:23 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 17:32:23 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:32:28 - backend.core.enhanced_process_manager - INFO - _scan_existing_processes:1048 - 检测到运行中的进程: test_process_2 (PID: 3558747)
+2025-07-24 17:32:29 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:29 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:32:29 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次
+2025-07-24 17:32:30 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:30 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:32:36 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:36 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:32:36 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次
+2025-07-24 17:32:37 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:37 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:32:43 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:43 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:32:43 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次
+2025-07-24 17:32:44 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:44 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:32:50 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:50 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:32:50 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次
+2025-07-24 17:32:51 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:51 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:32:57 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:57 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:32:57 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次
+2025-07-24 17:32:58 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:32:58 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:33:04 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:33:04 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:33:04 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次
+2025-07-24 17:33:05 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:33:05 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:33:11 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:33:11 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:33:11 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次
+2025-07-24 17:33:12 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:33:12 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:33:18 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:33:18 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_1 连接状态: connected
+2025-07-24 17:33:18 - backend.core.enhanced_process_manager - DEBUG - _check_process_health:1202 - 进程 test_process_1 健康问题: 有重启记录: 3次
+2025-07-24 17:33:19 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_2 状态更新: CPU=0.0%, 内存=10.25MB
+2025-07-24 17:33:19 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:33:25 - backend.core.enhanced_process_manager - DEBUG - _update_process_stats:1094 - 进程 test_process_1 状态更新: CPU=0.0%, 内存=0.0MB
+2025-07-24 17:33:25 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_1 崩溃
+2025-07-24 17:33:25 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_1 达到最大重启次数或禁用自动重启
+2025-07-24 17:33:25 - backend.core.enhanced_process_manager - WARNING - _update_process_stats:1098 - 无法访问进程 test_process_2 (PID: 3558747): process PID not found (pid=3558747)
+2025-07-24 17:33:25 - backend.core.enhanced_process_manager - WARNING - _handle_process_crashed:1210 - 检测到进程 test_process_2 崩溃
+2025-07-24 17:33:25 - backend.core.enhanced_process_manager - ERROR - _handle_process_crashed:1230 - 进程 test_process_2 达到最大重启次数或禁用自动重启
+2025-07-24 17:33:25 - backend.core.enhanced_process_manager - DEBUG - _check_connection_status:611 - 进程 test_process_2 连接状态: connected
+2025-07-24 17:50:54 - backend.core.enhanced_process_manager - INFO - shutdown:1461 - 正在关闭进程管理器...
+2025-07-24 17:50:58 - backend.core.enhanced_process_manager - INFO - stop_monitoring:554 - 进程监控已停止
+2025-07-24 17:50:58 - backend.core.enhanced_process_manager - INFO - shutdown:1470 - 进程管理器已关闭

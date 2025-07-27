@@ -1,78 +1,64 @@
 {
-  "device_id": "modbus_tcp_001",
-  "device_name": "Modbus TCP模拟设备",
-  "device_type": "modbus_tcp",
-  "host": "0.0.0.0",
-  "port": 502,
-  "unit_id": 1,
-  "update_interval": 1.0,
-  
-  "data_areas": {
-    "coil_count": 1000,
-    "discrete_input_count": 1000,
-    "input_register_count": 1000,
-    "holding_register_count": 1000
-  },
-  
-  "data_generator": {
-    "type": "composite",
-    "generators": [
-      {
-        "type": "sine",
-        "name": "温度传感器",
-        "amplitude": 500,
-        "frequency": 0.05,
-        "offset": 2500,
-        "addresses": [0, 1, 2, 3, 4]
-      },
-      {
-        "type": "sine", 
-        "name": "压力传感器",
-        "amplitude": 300,
-        "frequency": 0.08,
-        "offset": 1500,
-        "phase": 1.57,
-        "addresses": [10, 11, 12]
-      },
-      {
-        "type": "random",
-        "name": "噪声数据",
-        "min_value": 0,
-        "max_value": 100,
-        "data_type": "int",
-        "addresses": [20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
-      },
-      {
-        "type": "step",
-        "name": "状态信号",
-        "values": [true, false, true, true, false],
-        "step_interval": 8.0,
-        "addresses": [100, 101, 102]
-      },
-      {
-        "type": "linear",
-        "name": "线性变化",
-        "start_value": 0,
-        "end_value": 4095,
-        "duration": 30.0,
-        "repeat": true,
-        "addresses": [50, 51]
-      }
-    ]
-  },
-  
-  "simulation_settings": {
-    "enable_network_delay": false,
-    "network_delay_ms": 50,
-    "enable_connection_drops": false,
-    "connection_drop_probability": 0.01,
-    "enable_data_errors": false,
-    "data_error_probability": 0.001
-  },
-  
-  "logging": {
-    "level": "INFO",
-    "enable_request_logging": true,
-    "enable_data_logging": false
-  }
-} 
+    "device_id": "modbus_tcp_001",
+    "host": "0.0.0.0",
+    "port": 502,
+    "unit_id": 1,
+    "update_interval": 1.0,
+    "coil_count": 100,
+    "discrete_input_count": 100,
+    "input_register_count": 100,
+    "holding_register_count": 100,
+    "data_generator": {
+        "type": "composite",
+        "generators": [
+            {
+                "type": "sine",
+                "amplitude": 1000,
+                "frequency": 0.1,
+                "offset": 2000,
+                "addresses": [0, 1, 2]
+            },
+            {
+                "type": "random",
+                "min_value": 0,
+                "max_value": 4095,
+                "data_type": "int",
+                "addresses": [10, 11, 12]
+            },
+            {
+                "type": "counter",
+                "start_value": 0,
+                "increment": 1,
+                "addresses": [20, 21, 22]
+            },
+            {
+                "type": "temperature",
+                "base_temp": 25.0,
+                "variation": 5.0,
+                "addresses": [30, 31, 32]
+            },
+            {
+                "type": "pressure",
+                "base_pressure": 1013.25,
+                "variation": 50.0,
+                "addresses": [40, 41, 42]
+            },
+            {
+                "type": "humidity",
+                "base_humidity": 50.0,
+                "variation": 20.0,
+                "addresses": [50, 51, 52]
+            },
+            {
+                "type": "flow_rate",
+                "base_flow": 100.0,
+                "variation": 30.0,
+                "addresses": [60, 61, 62]
+            }
+        ]
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "modbus.log"
+    }
+}

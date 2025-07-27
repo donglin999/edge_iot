@@ -143,10 +143,8 @@ export default {
           cancelButtonText: '取消',
           type: 'info'
         })
-        
-        const response = await processApi.startProcesses()
+        const response = await processApi.startProcesses([])
         await loadProcesses()
-        
         if (response.success) {
           ElMessage.success(response.message || '所有进程启动成功')
         } else {
@@ -171,8 +169,7 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         })
-        
-        await processApi.stopProcesses()
+        await processApi.stopProcesses([])
         await loadProcesses()
         ElMessage.success('所有进程停止成功')
       } catch (error) {
@@ -190,8 +187,7 @@ export default {
           cancelButtonText: '取消',
           type: 'info'
         })
-        
-        await processApi.restartProcesses()
+        await processApi.restartProcesses([])
         await loadProcesses()
         ElMessage.success('所有进程重启成功')
       } catch (error) {
@@ -206,7 +202,6 @@ export default {
       try {
         const response = await processApi.startProcesses([process.name])
         await loadProcesses()
-        
         if (response.success) {
           ElMessage.success(response.message || `进程 ${process.name} 启动成功`)
         } else {
@@ -240,7 +235,7 @@ export default {
         ElMessage.success(`进程 ${process.name} 重启成功`)
       } catch (error) {
         console.error('Failed to restart process:', error)
-        ElMessage.error(`重启进程 ${process.name} 失败`)
+        ElMessage.error(`进程 ${process.name} 重启失败`)
       }
     }
 
