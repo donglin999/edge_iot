@@ -423,18 +423,33 @@ export default {
     const startTimer = () => {
       timer = setInterval(() => {
         updateTime()
-        // Refresh metrics every 30 seconds
-        if (Date.now() % 30000 < 1000) {
+        // 优化：减少刷新频率，从30秒改为60秒
+        if (Date.now() % 60000 < 1000) {
           loadSystemMetrics()
           loadDataStats()
         }
       }, 1000)
     }
     
+    // 添加防抖机制
+    let refreshTimeout = null
+    const debouncedRefresh = () => {
+      if (refreshTimeout) {
+        clearTimeout(refreshTimeout)
+      }
+      refreshTimeout = setTimeout(() => {
+        refreshDashboard()
+      }, 1000) // 1秒防抖
+    }
+    
     const stopTimer = () => {
       if (timer) {
         clearInterval(timer)
         timer = null
+      }
+      if (refreshTimeout) {
+        clearTimeout(refreshTimeout)
+        refreshTimeout = null
       }
     }
     

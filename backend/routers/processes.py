@@ -43,6 +43,21 @@ async def reload_config(
         logger.error(f"重新加载配置失败: {e}")
         raise HTTPException(status_code=500, detail=f"重新加载配置失败: {str(e)}")
 
+@router.post("/clear-cache")
+async def clear_cache(
+    process_service: ProcessService = Depends(get_process_service)
+):
+    """清除进程数据缓存"""
+    try:
+        process_service.clear_cache()
+        return {
+            "success": True,
+            "message": "缓存已清除，下次请求将获取最新数据"
+        }
+    except Exception as e:
+        logger.error(f"清除缓存失败: {e}")
+        raise HTTPException(status_code=500, detail=f"清除缓存失败: {str(e)}")
+
 @router.post("/start", response_model=ProcessControlResponse)
 async def start_processes(
     control: ProcessControl,

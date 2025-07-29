@@ -47,8 +47,7 @@ async def get_devices(
 ):
     """Get device list from InfluxDB"""
     try:
-        devices = await data_service.get_devices()
-        return devices
+        return await data_service.get_devices()
     except Exception as e:
         logger.error(f"Error getting devices: {e}")
         raise HTTPException(status_code=500, detail="Failed to get devices")

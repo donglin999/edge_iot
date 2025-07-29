@@ -66,6 +66,14 @@ class ModbustcpInflux:
 
         for thread in threads:
             thread.start()
+            
+        # 等待线程结束
+        try:
+            for thread in threads:
+                thread.join()
+        except KeyboardInterrupt:
+            self.stop()
+            Log().printInfo(f"Modbus TCP设备 {self.device_ip} 采集进程已停止")
 
     def force_stop_thread(self, thread):
         """强制停止线程"""
@@ -91,27 +99,48 @@ class ModbustcpInflux:
 
     def get_data(self, modbustcp_client):
         """获取数据线程"""
-        while True:
+        consecutive_errors = 0
+        max_consecutive_errors = 5
+        
+        while self.is_running:
             try:
                 tag_data = modbustcp_client.read_modbustcp()
                 # 成功获取数据
                 if tag_data:
+                    consecutive_errors = 0  # 重置错误计数
                     for data_item in tag_data:
                         self.data_buff.put(data_item)
+                    time.sleep(1)  # 成功读取后等待1秒
+                else:
+                    consecutive_errors += 1
+                    Log().printWarning(f"Modbus TCP {self.device_ip}:{self.device_port} 未获取到数据，连续错误次数: {consecutive_errors}")
+                    time.sleep(5)  # 没有数据时等待5秒
+                    
             except Exception as e:
+                consecutive_errors += 1
                 Log().printError(f"Modbus TCP {self.device_ip}:{self.device_port} get_data函数报错: {e}")
                 print(f"Modbus TCP {self.device_ip}:{self.device_port} get_data函数报错: {e}")
-                time.sleep(5)  # 出错后等待5秒再重试
+                
+                # 如果连续错误次数过多，增加等待时间
+                if consecutive_errors >= max_consecutive_errors:
+                    Log().printWarning(f"Modbus TCP {self.device_ip}:{self.device_port} 连续错误次数过多，等待30秒后重试")
+                    time.sleep(30)
+                    consecutive_errors = 0  # 重置错误计数
+                else:
+                    time.sleep(10)  # 出错后等待10秒再重试
 
     def calc_and_save(self, influxdb_client):
         """计算和保存数据线程"""
         # 创建一个列表来存储积累的数据
         batch_data = []
         batch_size = 50  # 设置批量提交的数据量
+        consecutive_empty_count = 0
+        max_empty_count = 10
 
-        while True:
+        while self.is_running:
             try:
                 tag_data = self.data_buff.get(timeout=60)  # 设置60秒超时
+                consecutive_empty_count = 0  # 重置空数据计数
                 self.last_data_time = datetime.now()
 
                 # 提取数据字段
@@ -150,14 +179,26 @@ class ModbustcpInflux:
                         batch_data = []
 
             except queue.Empty:
-                # 如果60秒没有收到数据，强制重启数据获取线程
-                Log().printWarning(f"Modbus TCP设备 {self.device_ip} 60秒未收到数据，准备强制重启数据获取线程")
-                self.restart_data_thread(self.device_conf)
+                consecutive_empty_count += 1
+                Log().printWarning(f"Modbus TCP设备 {self.device_ip} 60秒未收到数据，连续空数据次数: {consecutive_empty_count}")
+                
+                # 如果连续多次没有数据，考虑重启数据获取线程
+                if consecutive_empty_count >= max_empty_count:
+                    Log().printWarning(f"Modbus TCP设备 {self.device_ip} 连续{max_empty_count}次未收到数据，准备强制重启数据获取线程")
+                    self.restart_data_thread(self.device_conf)
+                    consecutive_empty_count = 0
                 continue
             except Exception as e:
                 Log().printError(f"Modbus TCP {self.device_ip}:{self.device_port} calc_and_save函数报错: {e}")
                 print(f"Modbus TCP {self.device_ip}:{self.device_port} calc_and_save函数报错: {e}")
-                influxdb_client = InfluxClient().connect()
+                
+                # 重新连接InfluxDB
+                try:
+                    influxdb_client = InfluxClient().connect()
+                except Exception as reconnect_error:
+                    Log().printError(f"重新连接InfluxDB失败: {reconnect_error}")
+                    time.sleep(10)  # 连接失败时等待10秒
+                    continue
 
                 # 如果发生错误但已有积累的数据，尝试提交这些数据
                 if batch_data:
@@ -167,6 +208,17 @@ class ModbustcpInflux:
                         batch_data = []
                     except Exception as e2:
                         Log().printError(f"Modbus TCP {self.device_ip} 尝试提交积累数据时出错: {e2}")
+                
+                time.sleep(5)  # 出错后等待5秒再继续
+
+    def stop(self):
+        """停止采集进程"""
+        self.is_running = False
+        Log().printInfo(f"正在停止Modbus TCP设备 {self.device_ip} 的采集进程...")
+        
+        # 强制停止数据线程
+        if self.data_thread and self.data_thread.is_alive():
+            self.force_stop_thread(self.data_thread)
 
 
 if __name__ == "__main__":

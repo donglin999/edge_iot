@@ -1,0 +1,4 @@
+2025-07-27 21:24:38 - backend.core.connection_monitor - INFO - register_connection:54 - 注册连接监控: test_process_1 -> 127.0.0.1:502
+2025-07-27 21:24:39 - backend.core.connection_monitor - INFO - register_connection:54 - 注册连接监控: test_process_2 -> 127.0.0.1:4840
+2025-07-27 21:24:40 - backend.core.connection_monitor - INFO - register_connection:54 - 注册连接监控: test_process_1 -> 127.0.0.1:502
+2025-07-27 21:24:41 - backend.core.connection_monitor - INFO - register_connection:54 - 注册连接监控: test_process_2 -> 127.0.0.1:4840

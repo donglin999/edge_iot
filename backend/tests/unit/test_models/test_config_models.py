@@ -82,7 +82,7 @@ class TestConfigModels:
             'api': {
                 'host': '0.0.0.0',
                 'port': 8000,
-                'cors_origins': ['http://localhost:3000']
+                'cors_origins': ['http://localhost:3001']
             }
         }
         
@@ -132,7 +132,7 @@ class TestConfigModels:
                 'max_connections': 1000
             },
             'cors': {
-                'origins': ['http://localhost:3000'],
+                'origins': ['http://localhost:3001'],
                 'methods': ['GET', 'POST', 'PUT', 'DELETE'],
                 'headers': ['*']
             },

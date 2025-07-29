@@ -94,11 +94,20 @@ class ConnectionMonitor:
     
     def _monitor_connections(self):
         """连接监控线程"""
+        self.logger.info("连接监控线程已启动")
         while self.monitoring_active:
             try:
+                self.logger.debug(f"开始连接检查，注册的连接数: {len(self.connection_info)}")
                 for process_name, conn_info in list(self.connection_info.items()):
+                    self.logger.debug(f"检查连接: {process_name} -> {conn_info.device_ip}:{conn_info.device_port}")
                     # 检查连接状态
                     result = self.check_connection(process_name)
+                    
+                    # 记录连接检查结果
+                    if result.success:
+                        self.logger.info(f"连接检查成功: {process_name} -> {result.message}")
+                    else:
+                        self.logger.warning(f"连接检查失败: {process_name} -> {result.message}")
                     
                     # 更新连接信息
                     if result.success:
@@ -123,6 +132,7 @@ class ConnectionMonitor:
                             self.logger.error(f"回调函数执行失败: {e}")
                 
                 # 等待下一次检查
+                self.logger.debug(f"等待 {self.check_interval} 秒后进行下一次检查")
                 time.sleep(self.check_interval)
                 
             except Exception as e:

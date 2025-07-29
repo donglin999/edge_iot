@@ -1163,9 +1163,13 @@ collector.melseca1enet_influx()
             if process_info.pid:
                 proc = psutil.Process(process_info.pid)
                 
-                # 获取CPU使用率 (需要调用两次才能获得准确值)
-                cpu_percent = proc.cpu_percent(interval=1.0)
-                process_info.cpu_percent = round(cpu_percent, 2)
+                # 优化CPU使用率检查 - 减少检查频率
+                current_time = time.time()
+                if not hasattr(process_info, '_last_cpu_check') or (current_time - getattr(process_info, '_last_cpu_check', 0)) > 10:
+                    # 每10秒才检查一次CPU使用率
+                    cpu_percent = proc.cpu_percent(interval=0.1)  # 减少等待时间
+                    process_info.cpu_percent = round(cpu_percent, 2)
+                    process_info._last_cpu_check = current_time
                 
                 # 获取内存使用情况
                 memory_info = proc.memory_info()
@@ -1179,24 +1183,25 @@ collector.melseca1enet_influx()
                 # 更新最后心跳时间
                 process_info.last_heartbeat = datetime.now()
                 
-                # 存储性能指标到数据库
-                metrics = PerformanceMetrics(
-                    process_name=process_name,
-                    timestamp=datetime.now(),
-                    cpu_percent=process_info.cpu_percent,
-                    memory_mb=process_info.memory_mb,
-                    data_points_per_minute=process_info.data_collection_rate,
-                    error_rate=0.0,  # 暂时设为0，后续可以根据错误统计计算
-                    response_time_ms=0.0  # 暂时设为0，后续可以根据实际响应时间计算
-                )
-                self._store_performance_metrics(metrics)
-                
-                # 存储进程状态到数据库
-                self._store_process_status(process_name, process_info)
+                # 减少数据库存储频率 - 只在重要变化时存储
+                if not hasattr(process_info, '_last_db_store') or (current_time - getattr(process_info, '_last_db_store', 0)) > 30:
+                    # 每30秒才存储一次到数据库
+                    metrics = PerformanceMetrics(
+                        process_name=process_name,
+                        timestamp=datetime.now(),
+                        cpu_percent=process_info.cpu_percent,
+                        memory_mb=process_info.memory_mb,
+                        data_points_per_minute=process_info.data_collection_rate,
+                        error_rate=0.0,
+                        response_time_ms=0.0
+                    )
+                    self._store_performance_metrics(metrics)
+                    self._store_process_status(process_name, process_info)
+                    process_info._last_db_store = current_time
                 
                 self.logger.debug(f"进程 {process_name} 状态更新: CPU={process_info.cpu_percent}%, 内存={process_info.memory_mb}MB")
                 
-        except (psutil.NoSuchProcess, psutil.AccessDenied) as e:
+        except (psutil.NoProcess, psutil.AccessDenied) as e:
             # 进程不存在或无权限访问
             self.logger.warning(f"无法访问进程 {process_name} (PID: {process_info.pid}): {e}")
             self._handle_process_crashed(process_name, process_info)

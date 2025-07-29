@@ -1,5 +1,5 @@
 {
-  "source_ip": "192.168.1.100",
+  "source_ip": "localhost",
   "source_port": 502,
   "source_slave_addr": 1,
   "fs": 1,

@@ -5,6 +5,7 @@ from typing import List, Optional, Dict
 from datetime import datetime, timedelta
 import sys
 import os
+import time
 
 # 添加项目根目录到Python路径
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -25,10 +26,22 @@ class ProcessService:
     
     def __init__(self):
         self.process_manager = integration.get_process_manager()
+        # 添加缓存机制
+        self._cache = {}
+        self._cache_timeout = 5  # 缓存5秒
+        self._last_cache_time = 0
         
     async def get_all_processes(self) -> ProcessListResponse:
         """Get all processes with their status and statistics"""
         try:
+            current_time = time.time()
+            
+            # 检查缓存是否有效
+            if (current_time - self._last_cache_time) < self._cache_timeout and self._cache:
+                logger.debug("使用缓存的进程数据")
+                return self._cache
+            
+            # 获取进程数据
             processes_data = self.process_manager.get_all_processes()
             processes = []
             
@@ -50,7 +63,25 @@ class ProcessService:
             
             stats = self._calculate_stats(processes)
             
-            # Broadcast process update via WebSocket
+            # 创建响应对象
+            response = ProcessListResponse(processes=processes, stats=stats)
+            
+            # 更新缓存
+            self._cache = response
+            self._last_cache_time = current_time
+            
+            # 异步广播进程更新（不阻塞响应）
+            asyncio.create_task(self._broadcast_process_update(processes, stats))
+            
+            return response
+            
+        except Exception as e:
+            logger.error(f"获取所有进程信息时出错: {e}")
+            raise
+    
+    async def _broadcast_process_update(self, processes, stats):
+        """异步广播进程更新"""
+        try:
             await websocket_manager.broadcast_to_topic("processes", {
                 "type": "process_update",
                 "timestamp": datetime.now().isoformat(),
@@ -60,12 +91,14 @@ class ProcessService:
                     "stopped_processes": stats.stopped_processes
                 }
             })
-            
-            return ProcessListResponse(processes=processes, stats=stats)
-            
         except Exception as e:
-            logger.error(f"获取所有进程信息时出错: {e}")
-            raise
+            logger.error(f"广播进程更新失败: {e}")
+    
+    def clear_cache(self):
+        """清除缓存"""
+        self._cache = {}
+        self._last_cache_time = 0
+        logger.debug("进程数据缓存已清除")
     
     async def get_process_status(self, process_name: str) -> Optional[ProcessInfo]:
         """Get status of a specific process"""

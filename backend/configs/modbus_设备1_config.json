@@ -3,7 +3,7 @@
     "name": "设备1",
     "protocol": "modbus_tcp",
     "connection": {
-      "host": "192.168.1.100",
+      "host": "localhost",
       "port": 502
     },
     "points": [

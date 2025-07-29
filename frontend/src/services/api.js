@@ -14,6 +14,9 @@ const api = axios.create({
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
+    // 添加请求开始时间
+    config.metadata = { startTime: new Date() }
+    
     // Add authentication token if available
     const token = localStorage.getItem('auth_token')
     if (token) {
@@ -29,9 +32,27 @@ api.interceptors.request.use(
 // Response interceptor
 api.interceptors.response.use(
   (response) => {
+    // 计算响应时间
+    const endTime = new Date()
+    const startTime = response.config.metadata?.startTime
+    if (startTime) {
+      const duration = endTime - startTime
+      if (duration > 1000) { // 超过1秒的请求
+        console.warn(`慢请求警告: ${response.config.url} 耗时 ${duration}ms`)
+      }
+    }
+    
     return response.data
   },
   (error) => {
+    // 计算错误请求的响应时间
+    const endTime = new Date()
+    const startTime = error.config?.metadata?.startTime
+    if (startTime) {
+      const duration = endTime - startTime
+      console.error(`请求失败: ${error.config?.url} 耗时 ${duration}ms`, error.message)
+    }
+    
     // Handle common errors
     if (error.response) {
       // Server responded with error status
